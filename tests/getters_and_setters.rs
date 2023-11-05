@@ -21,7 +21,7 @@ pub fn getters_and_setters() {
     // prints in case error
     user_new.print_err();
     user_default.print_err();
-    
+
     // getters new/default test
     assert_eq!(*user_new.get_age(), 18);
     assert_eq!(*user_new.get_email(), "email");

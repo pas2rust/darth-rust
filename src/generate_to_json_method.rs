@@ -36,14 +36,14 @@ pub fn generate_to_json_method(input: &DeriveInput) -> proc_macro2::TokenStream 
         ///     "field1": "Hello",
         ///     "field2": 42
         /// });
-        /// 
+        ///
         /// let my_instance = MyStruct {
         ///     field1: "Hello".to_string(),
         ///     field2: 42,
         /// };
         ///
         /// let json_value = my_instance.to_json();
-        /// 
+        ///
         /// assert_eq!(json_value, expected_json);
         /// ```
         ///

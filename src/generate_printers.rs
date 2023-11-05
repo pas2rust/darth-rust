@@ -1,7 +1,6 @@
 use quote::quote;
 use syn::{Data, DeriveInput};
 
-
 /// printter
 pub fn generate_printers(input: &DeriveInput) -> proc_macro2::TokenStream {
     match &input.data {

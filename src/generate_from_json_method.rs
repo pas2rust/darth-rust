@@ -75,7 +75,7 @@ pub fn generate_from_json_method(input: &DeriveInput) -> proc_macro2::TokenStrea
                 })
             } else {
                 Err(format!(
-                    "Invalid JSON format for deserialization: JSON must match the structure '{}'.", 
+                    "Invalid JSON format for deserialization: JSON must match the structure '{}'.",
                     stringify!(#struct_name)
                 ))
             }

@@ -76,7 +76,7 @@ pub fn generate_from_toml_method(input: &DeriveInput) -> proc_macro2::TokenStrea
                 })
             } else {
                 Err(format!(
-                    "Invalid TOML format for deserialization: TOML must match the structure '{}'.", 
+                    "Invalid TOML format for deserialization: TOML must match the structure '{}'.",
                     stringify!(#struct_name)
                 ))
             }

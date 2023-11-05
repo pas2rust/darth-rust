@@ -17,8 +17,8 @@ pub fn generate_mut_getters(fields: &Data) -> proc_macro2::TokenStream {
                         /// This method allows you to obtain a mutable reference to the `{field_name}`
                         /// field of the struct, which you can use to modify its value.
                         ///
-                        /// # Example 
-                        /// 
+                        /// # Example
+                        ///
                         ///```rust
                         /// use darth_rust::DarthRust;
                         ///
@@ -27,10 +27,10 @@ pub fn generate_mut_getters(fields: &Data) -> proc_macro2::TokenStream {
                         ///     field1: String,
                         ///     field2: i32,
                         /// }
-                        /// 
+                        ///
                         /// let new_instance = MyStruct::new("Hello", 18);
-                        /// *new_instance.get_mut_field1() = "mut hello".to_string() 
-                        /// 
+                        /// *new_instance.get_mut_field1() = "mut hello".to_string()
+                        ///
                         /// assert_eq!(new_instance.field1, "mut hello");
                         /// ```
                         /// # Returns

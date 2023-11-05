@@ -74,7 +74,7 @@ pub fn generate_from_yaml_method(input: &DeriveInput) -> proc_macro2::TokenStrea
                 })
             } else {
                 Err(format!(
-                    "Invalid YAML format for deserialization: YAML must match the structure '{}'.", 
+                    "Invalid YAML format for deserialization: YAML must match the structure '{}'.",
                     stringify!(#struct_name)
                 ))
             }

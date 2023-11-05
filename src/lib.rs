@@ -1,10 +1,14 @@
 mod count_methods_generated;
 mod crates;
-mod generate_new_method;
 mod generate_count_message;
 mod generate_default_method;
+mod generate_from_json_method;
+mod generate_from_toml_method;
+mod generate_from_xml_method;
+mod generate_from_yaml_method;
 mod generate_getters;
 mod generate_mut_getters;
+mod generate_new_method;
 mod generate_printers;
 mod generate_printers_by_field;
 mod generate_printers_err_by_field;
@@ -13,15 +17,11 @@ mod generate_printers_rust_by_field;
 mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
-mod generate_to_json_method;
-mod generate_to_yaml_method;
-mod generate_from_xml_method;
-mod generate_to_xml_method;
 mod generate_to_csv_method;
-mod generate_from_toml_method;
+mod generate_to_json_method;
 mod generate_to_toml_method;
-mod generate_from_yaml_method;
-mod generate_from_json_method;
+mod generate_to_xml_method;
+mod generate_to_yaml_method;
 use crates::*;
 
 ///
@@ -48,7 +48,7 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let to_json = generate_to_json_method(&input);
     let from_json = generate_from_json_method(&input);
     let from_yaml = generate_from_yaml_method(&input);
-    //let from_xml = generate_from_xml_method(&input);
+    let from_xml = generate_from_xml_method(&input);
     let from_toml = generate_from_toml_method(&input);
     let to_yaml = generate_to_yaml_method(&input);
     let to_xml = generate_to_xml_method(&input);
@@ -67,7 +67,7 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #from_toml
             #from_json
             #from_yaml
-            //#from_xml
+            #from_xml
             #to_json
             #to_csv
             #to_toml
