@@ -7,8 +7,10 @@ authors = ["Pas2Rust <pas2000@proton.me>"]
 license = "MIT"
 
 [dependencies]
+bcrypt = "*"
 chrono = "*"
 colorful = "*"
+jsonwebtoken = "*"
 lazy_static = "*"
 proc-macro2 = "*"
 quote = "*"
