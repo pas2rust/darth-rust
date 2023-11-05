@@ -4,9 +4,22 @@ use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation}
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use uuid::Uuid;
+
+use super::new_smtp_lettre_send_email::new_smtp_lettre_send_email;
 pub struct DarthTools;
 
 pub trait DarthToolsTrait {
+    fn new_lettre_send_email(
+        from_name: &str,
+        from_email: &str,
+        to_name: &str,
+        to_email: &str,
+        user_smtp: &str,
+        password_smtp: &str,
+        provider: &str,
+        subject: &str,
+        body: &str,
+    ) -> Result<(), lettre::error::Error>;
     fn new_jsonwebtoken_hs256_decode(
         token: String,
         secret: String,
@@ -65,27 +78,50 @@ pub struct Token {
 }
 
 impl DarthToolsTrait for DarthTools {
+    fn new_lettre_send_email(
+        from_name: &str,
+        from_email: &str,
+        to_name: &str,
+        to_email: &str,
+        user_smtp: &str,
+        password_smtp: &str,
+        provider: &str,
+        subject: &str,
+        body: &str,
+    ) -> Result<(), lettre::error::Error> {
+        new_smtp_lettre_send_email(
+            from_name,
+            from_email,
+            to_name,
+            to_email,
+            user_smtp,
+            password_smtp,
+            provider,
+            subject,
+            body,
+        )
+    }
     fn new_jsonwebtoken_hs256_decode(
-            token: String,
-            secret: String,
-        ) -> Result<Token, jsonwebtoken::errors::Error> {
-            let res = decode::<Token>(
-                &token,
-                &DecodingKey::from_secret(secret.as_ref()),
-                &Validation::new(jsonwebtoken::Algorithm::HS256),
-            )?;
-            Ok(res.claims)
+        token: String,
+        secret: String,
+    ) -> Result<Token, jsonwebtoken::errors::Error> {
+        let res = decode::<Token>(
+            &token,
+            &DecodingKey::from_secret(secret.as_ref()),
+            &Validation::new(jsonwebtoken::Algorithm::HS256),
+        )?;
+        Ok(res.claims)
     }
     fn new_jsonwebtoken_hs384_decode(
-            token: String,
-            secret: String,
-        ) -> Result<Token, jsonwebtoken::errors::Error> {
-            let res = decode::<Token>(
-                &token,
-                &DecodingKey::from_secret(secret.as_ref()),
-                &Validation::new(jsonwebtoken::Algorithm::HS384),
-            )?;
-            Ok(res.claims)
+        token: String,
+        secret: String,
+    ) -> Result<Token, jsonwebtoken::errors::Error> {
+        let res = decode::<Token>(
+            &token,
+            &DecodingKey::from_secret(secret.as_ref()),
+            &Validation::new(jsonwebtoken::Algorithm::HS384),
+        )?;
+        Ok(res.claims)
     }
     fn new_jsonwebtoken_hs512_decode(
         token: String,
