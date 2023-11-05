@@ -9,6 +9,18 @@ use super::new_smtp_lettre_send_email::new_smtp_lettre_send_email;
 pub struct DarthTools;
 
 pub trait DarthToolsTrait {
+    /// Sends an email using the SMTP protocol through the 'lettre' library.
+    ///
+    /// # Arguments
+    /// - `from_name`: Sender's name.
+    /// - `from_email`: Sender's email address.
+    /// - `to_name`: Recipient's name.
+    /// - `to_email`: Recipient's email address.
+    /// - `user_smtp`: SMTP server's username.
+    /// - `password_smtp`: SMTP server's password.
+    /// - `provider`: Email provider (e.g., "smtp.gmail.com").
+    /// - `subject`: Email subject.
+    /// - `body`: Email body.
     fn new_lettre_send_email(
         from_name: &str,
         from_email: &str,
