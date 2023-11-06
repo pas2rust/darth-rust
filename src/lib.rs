@@ -17,6 +17,7 @@ mod generate_printers_rust_by_field;
 mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
+mod tools;
 mod generate_to_csv_method;
 mod generate_to_json_method;
 mod generate_to_toml_method;
