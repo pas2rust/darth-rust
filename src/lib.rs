@@ -22,7 +22,6 @@ mod generate_to_json_method;
 mod generate_to_toml_method;
 mod generate_to_xml_method;
 mod generate_to_yaml_method;
-mod tools;
 use crates::*;
 
 ///

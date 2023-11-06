@@ -21,7 +21,6 @@ pub use crate::generate_to_json_method::generate_to_json_method;
 pub use crate::generate_to_toml_method::generate_to_toml_method;
 pub use crate::generate_to_xml_method::generate_to_xml_method;
 pub use crate::generate_to_yaml_method::generate_to_yaml_method;
-pub use crate::tools::darth_tools::{DarthTools, DarthToolsTrait};
 pub use proc_macro::TokenStream;
 pub use quote::quote;
 pub use syn::{parse_macro_input, Attribute, DeriveInput};
