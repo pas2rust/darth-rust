@@ -8,3 +8,5 @@ pub mod modal;
 pub mod toast;
 pub mod upload;
 pub mod video;
+pub mod select;
+pub mod input;
