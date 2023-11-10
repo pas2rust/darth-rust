@@ -38,7 +38,6 @@ use crates::*;
 /// ```
 #[proc_macro_derive(DarthRust)]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
-    //let args = parse_macro_input!(input as Attribute);
     let input = parse_macro_input!(input as DeriveInput);
     let struct_name = &input.ident;
     let mut_getters = generate_mut_getters(&input.data);

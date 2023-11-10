@@ -20,7 +20,7 @@ impl RandomBytesTrait for DarthTools {
         gen_special_characters: Option<u32>,
         gen_emoji: Option<u32>,
     ) -> String {
-        let breaker = |value: Option<u32>| value.unwrap_or(thread_rng().gen_range(5..=10));
+        let breaker = |value: Option<u32>| value.unwrap_or(thread_rng().gen_range(5..=20));
         let emojis = vec![
             '😀', '😄', '😊', '🙂', '😎', '😍', '🤩', '😂', '🤣', '😉', '😇', '🥰', '😋', '😜', '🤪',
             '😛', '🥳', '😺', '🐶', '🐱', '🐭', '🐰', '🦊', '🐻', '🐼', '🦁', '🐯', '🐮', '🐷', '🐸',
