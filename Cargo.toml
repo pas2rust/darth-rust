@@ -1,9 +1,11 @@
 [package]
 name = "darth-rust"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 description = "Darth rust"
 authors = ["Pas2Rust <pas2000@proton.me>"]
+homepage = "https://github.com/pas2rust/darth-rust"
+repository = "https://github.com/pas2rust/darth-rust"
 license = "MIT"
 
 [dependencies]
