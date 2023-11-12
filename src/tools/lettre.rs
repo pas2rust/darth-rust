@@ -1,4 +1,7 @@
-use lettre::{Message, message::header::ContentType, transport::smtp::authentication::Credentials, SmtpTransport};
+use lettre::{
+    message::header::ContentType, transport::smtp::authentication::Credentials, Message,
+    SmtpTransport,
+};
 
 use super::darth_tools::DarthTools;
 

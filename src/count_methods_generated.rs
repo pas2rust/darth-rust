@@ -6,8 +6,7 @@ pub fn count_methods_generated(token_stream: &proc_macro2::TokenStream) -> usize
         if let proc_macro2::TokenTree::Group(group) = token {
             let content = group.stream();
             let content_tokens = content.clone().into_iter();
-
-            for content_token in content_tokens {
+            content_tokens.into_iter().for_each(|content_token| {
                 if let proc_macro2::TokenTree::Ident(ident) = content_token {
                     let ident_str = ident.to_string();
 
@@ -16,7 +15,7 @@ pub fn count_methods_generated(token_stream: &proc_macro2::TokenStream) -> usize
                         method_count += 1;
                     }
                 }
-            }
+            });
         }
     }
 

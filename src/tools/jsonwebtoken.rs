@@ -1,6 +1,6 @@
 use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
-use serde_json::Value;
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 
 use super::darth_tools::DarthTools;
 #[derive(Serialize, Deserialize)]

@@ -9,11 +9,13 @@ repository = "https://github.com/pas2rust/darth-rust"
 license = "MIT"
 
 [dependencies]
+argon2 = "0.5.2"
 bcrypt = "^0.15.0"
 chrono = "^0.4.31"
 colorful = "^0.2.2"
 jsonwebtoken = "^9.1.0"
 lettre = "^0.11.1"
+mongodb = "2.7.1"
 proc-macro2 = "^1.0.69"
 quote = "^1.0.33"
 rand = "^0.8.5"

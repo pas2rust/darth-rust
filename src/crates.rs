@@ -24,4 +24,4 @@ pub use crate::generate_to_yaml_method::generate_to_yaml_method;
 //pub use crate::generate_is_by_field::generate_is_by_field;
 pub use proc_macro::TokenStream;
 pub use quote::quote;
-pub use syn::{parse_macro_input, DeriveInput};
+pub use syn::{parse_macro_input, Attribute, DeriveInput};

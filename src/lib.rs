@@ -17,12 +17,12 @@ mod generate_printers_rust_by_field;
 mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
-mod tools;
 mod generate_to_csv_method;
 mod generate_to_json_method;
 mod generate_to_toml_method;
 mod generate_to_xml_method;
 mod generate_to_yaml_method;
+mod tools;
 //mod generate_is_by_field;
 use crates::*;
 
@@ -37,7 +37,7 @@ use crates::*;
 ///     field2: i32,
 /// }
 /// ```
-#[proc_macro_derive(DarthRust)]
+#[proc_macro_derive(DarthRust, attributes(range, regex))]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let struct_name = &input.ident;
