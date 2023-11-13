@@ -23,7 +23,6 @@ mod generate_to_toml_method;
 mod generate_to_xml_method;
 mod generate_to_yaml_method;
 mod tools;
-//mod generate_is_by_field;
 use crates::*;
 
 ///
@@ -56,7 +55,6 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let to_csv = generate_to_csv_method(&input);
     let to_toml = generate_to_toml_method(&input);
     let printers = generate_printers(&input);
-    //let is = generate_is_by_field(&input.data);
     let printers_success_by_field = generate_printers_success_by_field(&input);
     let printers_by_field = generate_printers_by_field(&input);
     let printters_rust_by_field = generate_printers_rust_by_field(&input);
@@ -67,7 +65,6 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
         impl #struct_name {
             #mut_getters
             #from_toml
-            //#is
             #from_json
             #from_yaml
             #from_xml
