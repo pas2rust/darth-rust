@@ -12,6 +12,7 @@ mod generate_new_method;
 mod generate_printers;
 mod generate_printers_by_field;
 mod generate_printers_err_by_field;
+mod generate_is_valid_method;
 mod generate_printers_info_by_field;
 mod generate_printers_rust_by_field;
 mod generate_printers_success_by_field;
@@ -24,6 +25,7 @@ mod generate_to_xml_method;
 mod generate_to_yaml_method;
 mod tools;
 use crates::*;
+use generate_is_valid_method::generate_is_valid_method;
 
 ///
 /// # Usage
@@ -61,10 +63,12 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let printers_info_by_field = generate_printers_info_by_field(&input);
     let printers_err_by_field = generate_printers_err_by_field(&input);
     let printers_warning_by_field = generate_printers_warning_by_field(&input);
+    let is_valid_method = generate_is_valid_method(&input);
     let expanded = quote! {
         impl #struct_name {
             #mut_getters
             #from_toml
+            #is_valid_method
             #from_json
             #from_yaml
             #from_xml
