@@ -1,1 +1,1 @@
-pub mod getters_and_setters;
+pub mod setters_and_getters;
