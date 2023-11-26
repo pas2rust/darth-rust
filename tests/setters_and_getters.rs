@@ -47,34 +47,38 @@ pub fn setters_and_getters() {
     assert_eq!(*user_default.get_mut_id(), "");
     assert_eq!(*user_default.get_mut_name(), "");
     assert_eq!(*user_default.get_mut_friends(), vec![]);
-    
+
     user_new.set_age(12);
     user_new.set_email("new email");
     user_new.set_password("new password");
     user_new.set_name("new name");
     user_new.set_id("new id");
-    user_new.get_mut_friends().iter_mut().enumerate().for_each(|(index, friend)| {
-        let enumerate = index as u8;
-        let email = format!("{}-email@gmail.com", enumerate);
-        let name = format!("{}-user", enumerate);
-        let password = format!("{}-password", enumerate);
-        let age = enumerate * 2;
-        friend.set_age(age);
-        friend.set_id(enumerate.to_string());
-        friend.set_email(email.clone());
-        friend.set_name(name.clone());
-        friend.set_password(password.clone());
-        assert_eq!(*friend.get_age(), age);
-        assert_eq!(*friend.get_email(), email);
-        assert_eq!(*friend.get_name(), name);
-        assert_eq!(*friend.get_password(), password);
-        assert_eq!(*friend.get_id(), enumerate.to_string());
-        assert_eq!(*friend.get_mut_age(), age);
-        assert_eq!(*friend.get_mut_email(), email);
-        assert_eq!(*friend.get_mut_name(), name);
-        assert_eq!(*friend.get_mut_password(), password);
-        assert_eq!(*friend.get_mut_id(), enumerate.to_string());
-    });
+    user_new
+        .get_mut_friends()
+        .iter_mut()
+        .enumerate()
+        .for_each(|(index, friend)| {
+            let enumerate = index as u8;
+            let email = format!("{}-email@gmail.com", enumerate);
+            let name = format!("{}-user", enumerate);
+            let password = format!("{}-password", enumerate);
+            let age = enumerate * 2;
+            friend.set_age(age);
+            friend.set_id(enumerate.to_string());
+            friend.set_email(email.clone());
+            friend.set_name(name.clone());
+            friend.set_password(password.clone());
+            assert_eq!(*friend.get_age(), age);
+            assert_eq!(*friend.get_email(), email);
+            assert_eq!(*friend.get_name(), name);
+            assert_eq!(*friend.get_password(), password);
+            assert_eq!(*friend.get_id(), enumerate.to_string());
+            assert_eq!(*friend.get_mut_age(), age);
+            assert_eq!(*friend.get_mut_email(), email);
+            assert_eq!(*friend.get_mut_name(), name);
+            assert_eq!(*friend.get_mut_password(), password);
+            assert_eq!(*friend.get_mut_id(), enumerate.to_string());
+        });
     user_default.set_age(12);
     user_default.set_email("new email");
     user_default.set_password("new password");

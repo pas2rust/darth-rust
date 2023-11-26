@@ -4,23 +4,28 @@ use super::darth_tools::DarthTools;
 
 pub trait RandomBytesTrait {
     fn new_random_bytes(
-        gen_uppercase: Option<u32>,
-        gen_lowercase: Option<u32>,
-        gen_number: Option<u32>,
-        gen_special_characters: Option<u32>,
-        gen_emoji: Option<u32>,
+        uppercase_range: (u32, u32),
+        lowercase_range: (u32, u32),
+        number_range: (u32, u32),
+        special_range: (u32, u32),
+        emoji_range: (u32, u32),
     ) -> String;
 }
 
 impl RandomBytesTrait for DarthTools {
     fn new_random_bytes(
-        gen_uppercase: Option<u32>,
-        gen_lowercase: Option<u32>,
-        gen_number: Option<u32>,
-        gen_special_characters: Option<u32>,
-        gen_emoji: Option<u32>,
+        uppercase_range: (u32, u32),
+        lowercase_range: (u32, u32),
+        number_range: (u32, u32),
+        special_range: (u32, u32),
+        emoji_range: (u32, u32),
     ) -> String {
-        let breaker = |value: Option<u32>| value.unwrap_or(thread_rng().gen_range(5..=20));
+        let (uppercase_min, uppercase_max) = uppercase_range;
+        let (lowercase_min, lowercase_max) = lowercase_range;
+        let (number_min,  number_max) =  number_range;
+        let (special_min, special_max) = special_range;
+        let (emoji_min, emoji_max) = emoji_range;
+        let breaker = |min: u32, max: u32| thread_rng().gen_range(min + 1..=max + 1);
         let emojis = vec![
             '😀', '😄', '😊', '🙂', '😎', '😍', '🤩', '😂', '🤣', '😉', '😇', '🥰', '😋', '😜',
             '🤪', '😛', '🥳', '😺', '🐶', '🐱', '🐭', '🐰', '🦊', '🐻', '🐼', '🦁', '🐯', '🐮',
@@ -47,11 +52,11 @@ impl RandomBytesTrait for DarthTools {
             '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '[', ']', '{',
             '}', '|', '\\', '/', '<', '>', ',', '.', '?', ':', ';',
         ];
-        let uppercase_breaker = breaker(gen_uppercase);
-        let lowercase_breaker = breaker(gen_lowercase);
-        let number_breaker = breaker(gen_number);
-        let special_characters_breaker = breaker(gen_special_characters);
-        let emoji_breaker = breaker(gen_emoji);
+        let uppercase_breaker = breaker(uppercase_min, uppercase_max);
+        let lowercase_breaker = breaker(lowercase_min, lowercase_max);
+        let number_breaker = breaker(number_min, number_max);
+        let special_characters_breaker = breaker(special_min, special_max);
+        let emoji_breaker = breaker(emoji_min,  emoji_max);
 
         let mut input: String = "".to_string();
         let mut add_random_uppercase_char = 0;
