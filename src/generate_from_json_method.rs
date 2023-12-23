@@ -1,15 +1,19 @@
 use quote::quote;
 use syn::{Data, DeriveInput, Error};
 
-pub fn generate_from_json_method(input: &DeriveInput) -> proc_macro2::TokenStream {
+pub fn generate_from_json_method(
+    input: &DeriveInput,
+) -> proc_macro2::TokenStream {
     let struct_name = &input.ident;
 
     let fields = match &input.data {
         Data::Struct(data_struct) => &data_struct.fields,
         _ => {
-            return Error::new_spanned(&input, "from_json can only be derived for structs")
-                .to_compile_error()
-                .into();
+            return Error::new_spanned(
+                input,
+                "from_json can only be derived for structs",
+            )
+            .to_compile_error()
         }
     };
 

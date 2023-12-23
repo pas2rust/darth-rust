@@ -1,7 +1,9 @@
 use quote::quote;
 use syn::{Data, DeriveInput, Fields, Ident};
 
-pub fn generate_printers_info_by_field(input: &DeriveInput) -> proc_macro2::TokenStream {
+pub fn generate_printers_info_by_field(
+    input: &DeriveInput,
+) -> proc_macro2::TokenStream {
     let struct_name = &input.ident;
     match &input.data {
         Data::Struct(data_struct) => {
@@ -35,10 +37,10 @@ pub fn generate_printers_info_by_field(input: &DeriveInput) -> proc_macro2::Toke
                 quote! {}
             }
         }
-        _ => {
-            return syn::Error::new_spanned(&input, "print can only be derived for structs")
-                .to_compile_error()
-                .into();
-        }
+        _ => syn::Error::new_spanned(
+            input,
+            "print can only be derived for structs",
+        )
+        .to_compile_error(),
     }
 }

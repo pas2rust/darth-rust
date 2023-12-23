@@ -6,9 +6,11 @@ pub fn generate_printers(input: &DeriveInput) -> proc_macro2::TokenStream {
     match &input.data {
         Data::Struct(data_struct) => &data_struct.fields,
         _ => {
-            return syn::Error::new_spanned(&input, "print can only be derived for structs")
-                .to_compile_error()
-                .into();
+            return syn::Error::new_spanned(
+                input,
+                "print can only be derived for structs",
+            )
+            .to_compile_error()
         }
     };
     quote! {

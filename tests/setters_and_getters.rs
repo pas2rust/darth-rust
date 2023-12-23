@@ -53,11 +53,8 @@ pub fn setters_and_getters() {
     user_new.set_password("new password");
     user_new.set_name("new name");
     user_new.set_id("new id");
-    user_new
-        .get_mut_friends()
-        .iter_mut()
-        .enumerate()
-        .for_each(|(index, friend)| {
+    user_new.get_mut_friends().iter_mut().enumerate().for_each(
+        |(index, friend)| {
             let enumerate = index as u8;
             let email = format!("{}-email@gmail.com", enumerate);
             let name = format!("{}-user", enumerate);
@@ -78,7 +75,8 @@ pub fn setters_and_getters() {
             assert_eq!(*friend.get_mut_name(), name);
             assert_eq!(*friend.get_mut_password(), password);
             assert_eq!(*friend.get_mut_id(), enumerate.to_string());
-        });
+        },
+    );
     user_default.set_age(12);
     user_default.set_email("new email");
     user_default.set_password("new password");
@@ -107,7 +105,7 @@ pub fn setters_and_getters() {
     assert_eq!(*user_default.get_mut_id(), "new id");
     assert_eq!(*user_default.get_mut_name(), "new name");
 
-    //getters mut setters
+    // getters mut setters
     *user_new.get_mut_age() = 24;
     *user_new.get_mut_email() = "mut email".to_string();
     *user_new.get_mut_password() = "mut password".to_string();

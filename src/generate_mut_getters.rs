@@ -8,8 +8,10 @@ pub fn generate_mut_getters(fields: &Data) -> proc_macro2::TokenStream {
                 let methods = named_fields.named.iter().map(|field| {
                     let field_name = &field.ident.as_ref().unwrap();
                     let field_type = &field.ty;
-                    let method_name =
-                        Ident::new(&format!("get_mut_{}", field_name), field_name.span());
+                    let method_name = Ident::new(
+                        &format!("get_mut_{}", field_name),
+                        field_name.span(),
+                    );
 
                     quote! {
                         /// Get a mutable reference to the `{field_name}` field of the struct.

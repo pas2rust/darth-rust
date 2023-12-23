@@ -1,18 +1,20 @@
-pub use crate::generate_count_message::generate_count_message;
-pub use crate::generate_default_method::generate_default_method;
-pub use crate::generate_from_json_method::generate_from_json_method;
-pub use crate::generate_getters::generate_getters;
-pub use crate::generate_mut_getters::generate_mut_getters;
-pub use crate::generate_new_method::generate_new_method;
-pub use crate::generate_printers::generate_printers;
-pub use crate::generate_printers_by_field::generate_printers_by_field;
-pub use crate::generate_printers_err_by_field::generate_printers_err_by_field;
-pub use crate::generate_printers_info_by_field::generate_printers_info_by_field;
-pub use crate::generate_printers_rust_by_field::generate_printers_rust_by_field;
-pub use crate::generate_printers_success_by_field::generate_printers_success_by_field;
-pub use crate::generate_printers_warning_by_field::generate_printers_warning_by_field;
-pub use crate::generate_setters::generate_setters;
-pub use crate::generate_to_json_method::generate_to_json_method;
+pub use crate::{
+    generate_count_message::generate_count_message,
+    generate_default_method::generate_default_method,
+    generate_from_json_method::generate_from_json_method,
+    generate_getters::generate_getters,
+    generate_mut_getters::generate_mut_getters,
+    generate_new_method::generate_new_method,
+    generate_printers::generate_printers,
+    generate_printers_by_field::generate_printers_by_field,
+    generate_printers_err_by_field::generate_printers_err_by_field,
+    generate_printers_info_by_field::generate_printers_info_by_field,
+    generate_printers_rust_by_field::generate_printers_rust_by_field,
+    generate_printers_success_by_field::generate_printers_success_by_field,
+    generate_printers_warning_by_field::generate_printers_warning_by_field,
+    generate_setters::generate_setters,
+    generate_to_json_method::generate_to_json_method,
+};
 pub use proc_macro::TokenStream;
 pub use quote::quote;
 pub use syn::{parse_macro_input, DeriveInput};

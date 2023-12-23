@@ -1,0 +1,53 @@
+# Define a largura máxima de cada linha
+max_width = 80
+
+# Define o número de espaços por tabulação
+tab_spaces = 4
+
+# Define a edição do Rust a ser usada
+edition = "2021"
+
+# Define a estratégia de quebra de linha
+use_small_heuristics = "Max"
+
+# Define o estilo de quebra de linha
+newline_style = "Auto"
+
+# Define se os comentários devem ser formatados
+format_code_in_doc_comments = true
+
+# Define se a formatação deve ser executada no lugar
+emit_mode = "Files"
+
+# Define se a formatação deve ser feita em arquivos instáveis
+unstable_features = true
+
+# Define se os imports devem ser combinados em um único
+imports_granularity = "Crate"
+
+# Define se os literais de string devem ser formatados
+format_strings = true
+
+# Define se os comentários devem ser normalizados
+normalize_comments = true
+
+# Define se os literais numéricos em macros devem ser formatados
+format_macro_matchers = false
+
+# Define se os operadores binários devem ser colocados na frente ou atrás
+binop_separator = "Front"
+
+# Define a largura máxima de uma única linha if-else antes de quebrar
+single_line_if_else_max_width = 50
+
+# Define se os comentários devem ser quebrados para caber na linha
+wrap_comments = true
+
+# Define se um erro deve ser lançado quando uma linha excede a largura máxima
+error_on_line_overflow = false
+
+# Define se um erro deve ser lançado quando o código não está formatado
+error_on_unformatted = true
+
+# Define se os itens de implementação devem ser reordenados
+reorder_impl_items = false

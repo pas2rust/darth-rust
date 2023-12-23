@@ -16,10 +16,8 @@ mod generate_printers_warning_by_field;
 mod generate_setters;
 mod generate_to_json_method;
 mod generate_validator_method;
-mod tools;
 use crates::*;
 
-///
 /// # Usage
 ///
 /// ```rust
