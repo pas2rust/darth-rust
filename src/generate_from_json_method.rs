@@ -72,7 +72,7 @@ pub fn generate_from_json_method(
         /// # Return
         ///
         /// The method returns an instance of the structure deserialized from the JSON data.
-        fn from_json(json_value: serde_json::Value) -> Result<Self, String> {
+        pub fn from_json(json_value: serde_json::Value) -> Result<Self, String> {
             if let serde_json::Value::Object(json_object) = json_value {
                 Ok(Self {
                     #from_json_code
