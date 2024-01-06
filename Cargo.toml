@@ -1,12 +1,16 @@
 [package]
 name = "darth-rust"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 description = "Darth rust"
 authors = ["Pas2Rust <pas2000@proton.me>"]
 homepage = "https://github.com/pas2rust/darth-rust"
 repository = "https://github.com/pas2rust/darth-rust"
 license = "MIT"
+exclude = [
+    "tests/*",
+    "tests",
+]
 
 [package.metadata.scripts]
 dev = "cargo fmt && cargo clippy && cargo run"
