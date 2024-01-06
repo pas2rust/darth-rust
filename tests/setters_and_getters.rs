@@ -10,6 +10,19 @@ struct User {
     friends: Vec<User>,
 }
 
+impl User {
+    fn default() -> Self {
+        Self {
+            age: 0,
+            email: "".to_string(),
+            friends: vec![],
+            id: "".to_string(),
+            name: "".to_string(),
+            password: "".to_string(),
+        }
+    }
+}
+
 #[test]
 pub fn setters_and_getters() {
     let mut user_default = User::default();
