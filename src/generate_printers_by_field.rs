@@ -17,7 +17,7 @@ pub fn generate_printers_by_field(
                         );
                         quote! {
                             /// Print the value of the `{field_name}` field with a default label and light yellow color-coded output.
-                            fn #method_name(&self) {
+                            pub fn #method_name(&self) {
                                 let message = format!(
                                     "({}) @PRINT ➝ {}.{} = {:#?}",
                                     chrono::Utc::now(),

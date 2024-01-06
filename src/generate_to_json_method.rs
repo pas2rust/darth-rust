@@ -54,7 +54,7 @@ pub fn generate_to_json_method(
         /// # Return
         ///
         /// The method returns a `serde_json::Value` object that represents the structure serialized in JSON.
-        fn to_json(&self) -> serde_json::Value {
+        pub fn to_json(&self) -> serde_json::Value {
             serde_json::json!({
                 #(#json_object)*
             })

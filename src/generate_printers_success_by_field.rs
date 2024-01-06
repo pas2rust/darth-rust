@@ -14,7 +14,7 @@ pub fn generate_printers_success_by_field(
                         Ident::new(&format!("print_success_{}", field_name), field_name.span());
                     quote! {
                         /// Print the value of the `{field_name}` field with a 'SUCCESS' label and light yellow color-coded output.
-                        fn #method_name(&self) {
+                        pub fn #method_name(&self) {
                             use colorful::{Color, Colorful};
                             let message = format!(
                                 "({}) @SUCCESS ➝ {}.{} = {:#?}",
