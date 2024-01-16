@@ -1,6 +1,4 @@
-mod count_methods_generated;
 mod crates;
-mod generate_count_message;
 mod generate_from_json_method;
 mod generate_getters;
 mod generate_mut_getters;
@@ -14,12 +12,12 @@ mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
 mod generate_to_json_method;
-mod generate_validator_method;
+// mod generate_validator_method;
 use crates::*;
 
 /// # Usage
-/// ## run cargo add colorful in your project
-///
+/// ### run `cargo add colorful` in your project
+/// ### run `cargo add chrono` in your project
 /// ```rust
 /// use darth_rust::DarthRust;
 /// use serde::{Deserialize, Serialize};
@@ -63,7 +61,5 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #printers_err_by_field
         }
     };
-
-    generate_count_message(struct_name, &expanded);
     expanded.into()
 }
