@@ -40,7 +40,7 @@ pub fn generate_new_method(data: &Data) -> proc_macro2::TokenStream {
                 /// }
                 ///
                 /// // Create a new instance of MyStruct with field1 set to "Hello" and field2 set to 42 using the generated `new` method.
-                /// let new_instance = MyStruct::new("Hello", 42);
+                /// let new_instance = MyStruct::new("Hello".to_string(), 42);
                 ///
                 /// // Create another instance of MyStruct with field1 and field2 set to specific values.
                 /// let instance = MyStruct {
