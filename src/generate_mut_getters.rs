@@ -30,7 +30,7 @@ pub fn generate_mut_getters(fields: &Data) -> proc_macro2::TokenStream {
                         ///     field2: i32,
                         /// }
                         ///
-                        /// let new_instance = MyStruct::new("Hello", 18);
+                        /// let new_instance = MyStruct::new("Hello".to_string(), 18);
                         /// *new_instance.get_mut_field1() = "mut hello".to_string()
                         ///
                         /// assert_eq!(new_instance.field1, "mut hello");
