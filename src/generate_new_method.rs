@@ -27,34 +27,6 @@ pub fn generate_new_method(data: &Data) -> proc_macro2::TokenStream {
             });
 
             quote! {
-                /// # Example
-                ///
-                /// ```rust
-                /// use darth_rust::DarthRust;
-                ///
-                /// // Define a struct named MyStruct with two fields: field1 (a String) and field2 (an i32).
-                /// #[derive(DarthRust, Debug, PartialEq)]
-                /// struct MyStruct {
-                ///     field1: String,
-                ///     field2: i32,
-                /// }
-                ///
-                /// // Create a new instance of MyStruct with field1 set to "Hello" and field2 set to 42 using the generated `new` method.
-                /// let new_instance = MyStruct::new("Hello".to_string(), 42);
-                ///
-                /// // Create another instance of MyStruct with field1 and field2 set to specific values.
-                /// let instance = MyStruct {
-                ///     field1: "Hello".to_string(),
-                ///     field2: 42,
-                /// };
-                ///
-                /// // Assert that the two instances are equal, demonstrating the use of the PartialEq trait.
-                /// assert_eq!(instance, new_instance);
-                /// ```
-                ///
-                /// # Returns
-                ///
-                /// A new instance of the `MyStruct` struct with `field1` set to the provided String and `field2` set to the provided i32.
                 pub fn new(#(#field_param_initializers),*) -> Self {
                     Self {
                         #(#field_names)*

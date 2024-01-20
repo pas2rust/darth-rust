@@ -22,38 +22,6 @@ pub fn generate_to_json_method(
     });
 
     quote! {
-        /// Generates a `to_json` method to serialize the structure into JSON.
-        ///
-        /// This method generates a JSON object that represents the current structure and its fields.
-        ///
-        /// # Example
-        ///
-        /// ```rust
-        /// use darth_rust::DarthRust;
-        /// use serde_json::json;
-        /// #[derive(DarthRust, Debug, PartialEq)]
-        /// struct MyStruct {
-        ///     field1: String,
-        ///     field2: i32,
-        /// }
-        /// let expected_json = json!({
-        ///     "field1": "Hello",
-        ///     "field2": 42
-        /// });
-        ///
-        /// let my_instance = MyStruct {
-        ///     field1: "Hello".to_string(),
-        ///     field2: 42,
-        /// };
-        ///
-        /// let json_value = my_instance.to_json();
-        ///
-        /// assert_eq!(json_value, Ok(expected_instance));
-        /// ```
-        ///
-        /// # Return
-        ///
-        /// The method returns a `serde_json::Value` object that represents the structure serialized in JSON.
         pub fn to_json(&self) -> serde_json::Value {
             serde_json::json!({
                 #(#json_object)*
