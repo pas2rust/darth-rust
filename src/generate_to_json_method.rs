@@ -48,7 +48,7 @@ pub fn generate_to_json_method(
         ///
         /// let json_value = my_instance.to_json();
         ///
-        /// assert_eq!(json_value, expected_json);
+        /// assert_eq!(json_value, Ok(expected_instance));
         /// ```
         ///
         /// # Return
