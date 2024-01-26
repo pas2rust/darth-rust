@@ -27,7 +27,7 @@ pub fn generate_new_method(data: &Data) -> proc_macro2::TokenStream {
             });
 
             quote! {
-                pub fn new(#(#field_param_initializers),*) -> Self {
+                pub fn new<'a>(#(#field_param_initializers),*) -> Self {
                     Self {
                         #(#field_names)*
                     }
