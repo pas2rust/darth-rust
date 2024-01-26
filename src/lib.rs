@@ -31,10 +31,11 @@ use crates::*;
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let struct_name = &input.ident;
+    let generics = &input.generics;
     let mut_getters = generate_mut_getters(&input.data);
     let getters = generate_getters(&input.data);
     let setters = generate_setters(&input.data);
-    let new = generate_new_method(&input.data);
+    let new = generate_new_method(&input.data, generics);
     let to_json = generate_to_json_method(&input);
     let from_json = generate_from_json_method(&input);
     let printers = generate_printers(&input);
