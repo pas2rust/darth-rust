@@ -1,9 +1,10 @@
 use quote::quote;
-use syn::{Data, Generics};
+use syn::{Data, Generics, Ident};
 
 pub fn generate_new_method(
     data: &Data,
     generics: &Generics,
+    ident: &Ident,
 ) -> proc_macro2::TokenStream {
     match data {
         Data::Struct(data_struct) => {
@@ -33,8 +34,8 @@ pub fn generate_new_method(
                 generics.split_for_impl();
 
             quote! {
-                pub fn new #impl_generics (#(#field_param_initializers),*) -> Self #ty_generics #where_clause {
-                    Self {
+                pub fn new #impl_generics (#(#field_param_initializers),*) -> #ident #ty_generics #where_clause {
+                    #ident {
                         #(#field_names)*
                     }
                 }
