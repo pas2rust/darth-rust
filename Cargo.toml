@@ -1,6 +1,6 @@
 [package]
 name = "darth-rust"
-version = "0.6.4"
+version = "0.6.5"
 edition = "2021"
 description = "Darth rust"
 authors = ["Pas2Rust <pas2000@proton.me>"]
