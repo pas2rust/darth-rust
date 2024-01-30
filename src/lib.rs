@@ -36,7 +36,7 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let mut_getters = generate_mut_getters(data);
     let getters = generate_getters(data);
     let setters = generate_setters(data);
-    let new = generate_new_method(data, generics, struct_name);
+    let new = generate_new_method(data, generics);
     let to_json = generate_to_json_method(&input);
     let from_json = generate_from_json_method(&input);
     let printers = generate_printers(&input);
