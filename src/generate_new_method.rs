@@ -23,11 +23,11 @@ pub fn generate_new_method(
                 }
             });
 
-            let (_impl_generics, ty_generics, where_clause) =
+            let (impl_generics, ty_generics, where_clause) =
                 generics.split_for_impl();
 
             quote! {
-                pub fn new(#(#field_param_initializers),*) -> Self #ty_generics #where_clause {
+                pub fn new(#impl_generics #(#field_param_initializers),*) -> Self #ty_generics #where_clause {
                     Self {
                         #(#field_names)*
                     }
