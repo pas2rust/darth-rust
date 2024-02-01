@@ -1,4 +1,5 @@
 mod crates;
+mod generate_calc_methods;
 mod generate_from_json_method;
 mod generate_getters;
 mod generate_mut_getters;
@@ -36,6 +37,7 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let mut_getters = generate_mut_getters(data);
     let getters = generate_getters(data);
     let setters = generate_setters(data);
+    let calc_methods = generate_calc_methods(data);
     let new = generate_new_method(data, generics);
     let to_json = generate_to_json_method(&input);
     let from_json = generate_from_json_method(&input);
@@ -61,6 +63,7 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #printers_info_by_field
             #printers_warning_by_field
             #printers_err_by_field
+            #calc_methods
         }
     };
     expanded.into()
