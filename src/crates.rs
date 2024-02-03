@@ -1,5 +1,7 @@
 pub use crate::{
+    generate_cache::generate_cache,
     generate_calc_methods::generate_calc_methods,
+    generate_default_method::generate_default_method,
     generate_from_json_method::generate_from_json_method,
     generate_getters::generate_getters,
     generate_mut_getters::generate_mut_getters,

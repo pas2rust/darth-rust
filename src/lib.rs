@@ -1,5 +1,7 @@
 mod crates;
+mod generate_cache;
 mod generate_calc_methods;
+mod generate_default_method;
 mod generate_from_json_method;
 mod generate_getters;
 mod generate_mut_getters;
@@ -22,7 +24,7 @@ use crates::*;
 /// ```rust
 /// use darth_rust::DarthRust;
 /// use serde::{Deserialize, Serialize};
-/// #[derive(DarthRust, Debug, Serialize, Deserialize)]
+/// #[derive(DarthRust, Debug, Serialize, Deserialize, Clone, Default)]
 /// struct MyStruct {
 ///     field1: String,
 ///     field2: i32,
@@ -48,10 +50,14 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let printers_info_by_field = generate_printers_info_by_field(&input);
     let printers_err_by_field = generate_printers_err_by_field(&input);
     let printers_warning_by_field = generate_printers_warning_by_field(&input);
+    let default = generate_default_method(data, generics);
+    let cache = generate_cache(data);
     let expanded = quote! {
         impl #struct_name {
+            #cache
             #mut_getters
             #from_json
+            #default
             #to_json
             #new
             #getters

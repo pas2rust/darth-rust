@@ -18,7 +18,7 @@ pub fn test_setters() {
     user_new.set_password("newpassword");
     user_new.set_name("newname");
     user_new.set_id("newid");
-
+    user_new.print_err();
     assert_eq!(*user_new.get_age(), 12);
     assert_eq!(*user_new.get_email(), "newemail");
     assert_eq!(*user_new.get_password(), "newpassword");
@@ -43,7 +43,7 @@ pub fn test_getters_mut() {
     *user_new.get_mut_password() = "mutpassword".to_string();
     *user_new.get_mut_name() = "mutname".to_string();
     *user_new.get_mut_id() = "mutid".to_string();
-
+    user_new.print_err();
     assert_eq!(*user_new.get_age(), 24);
     assert_eq!(*user_new.get_email(), "mutemail");
     assert_eq!(*user_new.get_password(), "mutpassword");
@@ -80,7 +80,7 @@ pub fn test_getters_mut_setters() {
     *user_default.get_mut_password() = "mut password".to_string();
     *user_default.get_mut_name() = "mut name".to_string();
     *user_default.get_mut_id() = "mut id".to_string();
-
+    user_default.print_err();
     assert_eq!(*user_default.get_age(), 24);
     assert_eq!(*user_default.get_email(), "mut email");
     assert_eq!(*user_default.get_password(), "mut password");

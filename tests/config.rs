@@ -1,6 +1,6 @@
 use darth_rust::DarthRust;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, DarthRust)]
+#[derive(Debug, DarthRust, Clone)]
 pub struct CalcStruct {
     pub usize: usize,
     pub u8: u8,
@@ -25,17 +25,4 @@ pub struct User {
     email: String,
     age: u8,
     friends: Vec<User>,
-}
-
-impl User {
-    pub fn default() -> Self {
-        Self {
-            age: 0,
-            email: "".to_string(),
-            friends: vec![],
-            id: "".to_string(),
-            name: "".to_string(),
-            password: "".to_string(),
-        }
-    }
 }
