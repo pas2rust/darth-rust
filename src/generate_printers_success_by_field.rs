@@ -17,7 +17,7 @@ pub fn generate_printers_success_by_field(
                         pub fn #method_name(&self, custom: &str) {
                             use colorful::{Color, Colorful};
                             let message = format!(
-                                "({}) @SUCCESS [{}] ➝ {}.{} = {:#?}",
+                                "({}) @SUCCESS '{}' {}.{} = {:#?}",
                                 chrono::Utc::now(),
                                 custom,
                                 stringify!(#struct_name),
