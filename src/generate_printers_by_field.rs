@@ -19,12 +19,12 @@ pub fn generate_printers_by_field(
                             /// Print the value of the `{field_name}` field with a default label and light yellow color-coded output.
                             pub fn #method_name(&self, custom: &str) {
                                 let message = format!(
-                                    "({}) @PRINT ➝ {}.{} = {:#?} ➝ ({})",
+                                    "({}) @PRINT [{}] ➝ {}.{} = {:#?}",
                                     chrono::Utc::now(),
+                                    custom,
                                     stringify!(#struct_name),
                                     stringify!(#field_name),
                                     &self.#field_name,
-                                    custom
                                 );
                                 println!("{}", message);
                             }

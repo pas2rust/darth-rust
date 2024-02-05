@@ -17,12 +17,12 @@ pub fn generate_printers_err_by_field(
                         pub fn #method_name(&self, custom: &str) {
                             use colorful::{Color, Colorful};
                             let message = format!(
-                                "({}) @ERR ➝ {}.{} = {:#?} ➝ ({})",
+                                "({}) @ERR [{}] ➝ {}.{} = {:#?}",
                                 chrono::Utc::now(),
+                                custom,
                                 stringify!(#struct_name),
                                 stringify!(#field_name),
                                 &self.#field_name,
-                                custom
                             );
                             println!("{}", message.gradient(Color::Magenta));
                         }

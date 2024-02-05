@@ -18,12 +18,12 @@ pub fn generate_printers_warning_by_field(
                             use colorful::{Color, Colorful};
 
                             let message = format!(
-                                "({}) @WARNING ➝ {}.{} = {:#?} ➝ ({})",
+                                "({}) @WARNING [{}] ➝ {}.{} = {:#?}",
                                 chrono::Utc::now(),
+                                custom,
                                 stringify!(#struct_name),
                                 stringify!(#field_name),
                                 &self.#field_name,
-                                custom
                             );
                             println!("{}", message.gradient(Color::LightYellow));
                         }
