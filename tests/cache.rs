@@ -9,7 +9,7 @@ fn test_vec_update() {
     user2.set_id("1");
     user2.vec_insert_cache(&mut cache);
     user2.vec_update_by_id_in_cache(user2.clone(), &mut cache);
-    user2.print_err();
+    user2.print_err("");
     assert_eq!(user2.vec_find_by_id_in_cache(&cache), Some(&user2),);
 }
 
@@ -22,7 +22,7 @@ fn test_hash_update() {
     user2.set_id("1");
     user1.hash_set_cache("user1", &mut cache);
     user2.hash_set_cache("user1", &mut cache);
-    user2.print_err();
+    user2.print_err("");
     assert_eq!(User::hash_find_by_key_in_cache("user1", &cache), Some(&user2));
 }
 #[test]
@@ -36,8 +36,8 @@ fn test_vec_find_many() {
     user1.vec_insert_cache(&mut cache);
     user2.vec_insert_cache(&mut cache);
     let found_users = User::vec_find_many_by_name_in_cache(&user1, &cache);
-    user1.print_err();
-    user2.print_err();
+    user1.print_err("");
+    user2.print_err("");
     assert_eq!(found_users, vec![&user1, &user2]);
 }
 
@@ -50,7 +50,7 @@ fn test_hash_find_many() {
     user2.hash_set_cache("user2", &mut cache);
     let found_users =
         User::hash_find_by_keys_in_cache(vec!["user1", "user2"], &cache);
-    user1.print_err();
-    user2.print_err();
+    user1.print_err("");
+    user2.print_err("");
     assert_eq!(found_users, vec![Some(&user1), Some(&user2)]);
 }

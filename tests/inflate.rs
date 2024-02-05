@@ -7,7 +7,7 @@ fn test_inflate_usize() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_usize(20.0);
-    calc_struct.print_err_usize();
+    calc_struct.print_err_usize("");
     assert_eq!(calc_struct.usize, 12);
 }
 
@@ -17,7 +17,7 @@ fn test_inflate_u8() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_u8(20.0);
-    calc_struct.print_err_u8();
+    calc_struct.print_err_u8("");
     assert_eq!(calc_struct.u8, 24);
 }
 
@@ -27,7 +27,7 @@ fn test_inflate_u16() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_u16(20.0);
-    calc_struct.print_err_u16();
+    calc_struct.print_err_u16("");
     assert_eq!(calc_struct.u16, 36);
 }
 
@@ -37,7 +37,7 @@ fn test_inflate_u32() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_u32(20.0);
-    calc_struct.print_err_u32();
+    calc_struct.print_err_u32("");
     assert_eq!(calc_struct.u32, 48);
 }
 
@@ -47,7 +47,7 @@ fn test_inflate_u64() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_u64(20.0);
-    calc_struct.print_err_u64();
+    calc_struct.print_err_u64("");
     assert_eq!(calc_struct.u64, 60);
 }
 
@@ -57,7 +57,7 @@ fn test_inflate_u128() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_u128(20.0);
-    calc_struct.print_err_u128();
+    calc_struct.print_err_u128("");
     assert_eq!(calc_struct.u128, 72);
 }
 
@@ -67,7 +67,7 @@ fn test_inflate_isize() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_isize(20.0);
-    calc_struct.print_err_isize();
+    calc_struct.print_err_isize("");
     assert_eq!(calc_struct.isize, 84);
 }
 
@@ -77,7 +77,7 @@ fn test_inflate_i16() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_i16(20.0);
-    calc_struct.print_err_i16();
+    calc_struct.print_err_i16("");
     assert_eq!(calc_struct.i16, 96);
 }
 
@@ -87,7 +87,7 @@ fn test_inflate_i32() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_i32(20.0);
-    calc_struct.print_err_i32();
+    calc_struct.print_err_i32("");
     assert_eq!(calc_struct.i32, 108);
 }
 
@@ -97,7 +97,7 @@ fn test_inflate_i64() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_i64(20.0);
-    calc_struct.print_err_i64();
+    calc_struct.print_err_i64("");
     assert_eq!(calc_struct.i64, 120);
 }
 
@@ -107,7 +107,7 @@ fn test_inflate_i128() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_i128(20.0);
-    calc_struct.print_err_i128();
+    calc_struct.print_err_i128("");
     assert_eq!(calc_struct.i128, 132);
 }
 
@@ -117,7 +117,7 @@ fn test_inflate_f64() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_f64(20.0);
-    calc_struct.print_err_f64();
+    calc_struct.print_err_f64("");
     assert_eq!(calc_struct.f64, 144.0);
 }
 
@@ -127,6 +127,6 @@ fn test_inflate_f32() {
         10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120.0, 130.0,
     );
     calc_struct.inflate_f32(20.0);
-    calc_struct.print_err_f32();
+    calc_struct.print_err_f32("");
     assert_eq!(calc_struct.f32, 156.0);
 }

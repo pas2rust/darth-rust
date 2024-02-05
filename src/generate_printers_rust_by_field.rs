@@ -14,14 +14,15 @@ pub fn generate_printers_rust_by_field(
                         Ident::new(&format!("print_rust_{}", field_name), field_name.span());
                     quote! {
                         /// Print the value of the `{field_name}` field with a 'RUST' label and light yellow color-coded output.
-                        pub fn #method_name(&self) {
+                        pub fn #method_name(&self, custom: &str) {
                             use colorful::{Color, Colorful};
                             let message = format!(
-                                "({}) @RUST ➝ {}.{} = {:#?}",
+                                "({}) @RUST ➝ {}.{} = {:#?} ➝ ({})",
                                 chrono::Utc::now(),
                                 stringify!(#struct_name),
                                 stringify!(#field_name),
-                                &self.#field_name
+                                &self.#field_name,
+                                custom
                             );
                             println!("{}", message.gradient(Color::DarkRed2));
                         }

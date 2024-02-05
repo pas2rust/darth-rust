@@ -14,14 +14,15 @@ pub fn generate_printers_info_by_field(
                         Ident::new(&format!("print_info_{}", field_name), field_name.span());
                     quote! {
                         /// Print the value of the `{field_name}` field with a 'INFO' label and light yellow color-coded output.
-                        pub fn #method_name(&self) {
+                        pub fn #method_name(&self, custom:&str) {
                             use colorful::{Color, Colorful};
                             let message = format!(
-                                "({}) @INFO ➝ {}.{} = {:#?}",
+                                "({}) @INFO ➝ {}.{} = {:#?} ➝ ({})",
                                 chrono::Utc::now(),
                                 stringify!(#struct_name),
                                 stringify!(#field_name),
-                                &self.#field_name
+                                &self.#field_name,
+                                custom
                             );
                             println!("{}", message.gradient(Color::Purple3));
                         }
