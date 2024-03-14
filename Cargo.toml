@@ -1,6 +1,6 @@
 [package]
 name = "darth-rust"
-version = "0.8.3"
+version = "0.8.4"
 edition = "2021"
 description = "Darth rust"
 authors = ["Pas2Rust <pas2000@proton.me>"]
@@ -27,6 +27,7 @@ chrono = "^0.4.31"
 colorful = "^0.2.2"
 proc-macro2 = "^1.0.69"
 quote = "^1.0.33"
+regex = "1.10.3"
 serde = {version =  "^1.0.190", features = ["derive"]}
 serde_json = "^1.0.108"
 syn = {version = "^2.0.38", features = ["full"]}

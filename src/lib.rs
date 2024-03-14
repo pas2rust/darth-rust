@@ -4,6 +4,8 @@ mod generate_calc_methods;
 mod generate_default_method;
 mod generate_from_json_method;
 mod generate_getters;
+mod generate_is_range_method;
+mod generate_is_regex_method;
 mod generate_mut_getters;
 mod generate_new_method;
 mod generate_printers;
@@ -15,7 +17,6 @@ mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
 mod generate_to_json_method;
-// mod generate_validator_method;
 use crates::*;
 
 /// # Usage
@@ -52,6 +53,8 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let printers_warning_by_field = generate_printers_warning_by_field(&input);
     let default = generate_default_method(data, generics);
     let cache = generate_cache(data);
+    let is_regex = generate_is_regex_method(data);
+    let is_range = generate_is_range_method(data);
     let expanded = quote! {
         impl #struct_name {
             #cache
@@ -70,6 +73,8 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #printers_warning_by_field
             #printers_err_by_field
             #calc_methods
+            #is_regex
+            #is_range
         }
     };
     expanded.into()
