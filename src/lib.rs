@@ -22,6 +22,7 @@ use crates::*;
 /// # Usage
 /// ### run `cargo add colorful` in your project
 /// ### run `cargo add chrono` in your project
+/// ### run `cargo add serde` in your project
 /// ```rust
 /// use darth_rust::DarthRust;
 /// use serde::{Deserialize, Serialize};
