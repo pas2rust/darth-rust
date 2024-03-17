@@ -11,7 +11,7 @@ exclude = [
     "tests/*",
     "tests",
 ]
-keywords = ["rust", "darth_rust", "proc_macro_derive", "serde", "chrono", "colorful", "getters", "setters", "json", "printers", "cache", "regex", "range", "procedural-macro", "derive", "struct", "productivity", "boilerplate", "validation"]
+keywords = ["logs", "json", "cache", "struct", "regex"]
 [package.metadata.scripts]
 dev = "cargo fmt && cargo clippy && cargo run"
 test = "cargo fmt && cargo clippy && cargo test"
