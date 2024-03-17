@@ -15,17 +15,18 @@ cargo add chrono
 ### Examples
 #### https://github.com/pas2rust/darth-rust/tree/master/tests
 ```rust
-    use darth_rust::DarthRust;
-    use serde::{Deserialize, Serialize};
-    #[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
-    pub struct User {
-        id: String,
-        name: String,
-        password: String,
-        email: String,
-        age: u8,
-        friends: Vec<User>,
-    }
+use darth_rust::DarthRust;
+use serde::{Deserialize, Serialize};
+
+#[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
+pub struct User {
+    id: String,
+    name: String,
+    password: String,
+    email: String,
+    age: usize,
+    friends: Vec<User>,
+}
 ```
 
 ## Contribution
