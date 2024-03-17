@@ -10,8 +10,9 @@ DarthRust is a Rust procedural macro library that aims to enhance developer prod
 ### run `cargo add chrono` in your project
 
 ## Use
-### Examples https://github.com/pas2rust/darth-rust/tree/master/tests
-````rust
+### Examples
+#### https://github.com/pas2rust/darth-rust/tree/master/tests
+```rust
     use darth_rust::DarthRust;
     use serde::{Deserialize, Serialize};
     #[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
@@ -24,7 +25,6 @@ DarthRust is a Rust procedural macro library that aims to enhance developer prod
         friends: Vec<User>,
     }
 ```
-
 
 ## Contribution
 ...
