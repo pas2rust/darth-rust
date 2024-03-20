@@ -20,9 +20,11 @@ mod generate_to_json_method;
 use crates::*;
 
 /// # Usage
-/// ### run `cargo add colorful` in your project
-/// ### run `cargo add chrono` in your project
-/// ### run `cargo add serde` in your project
+/// ### run `cargo add regex`
+/// ### run `cargo add colorful`
+/// ### run `cargo add chrono`
+/// ### run `cargo add serde`
+/// ### run `cargo add serde_json`
 /// ```rust
 /// use darth_rust::DarthRust;
 /// use serde::{Deserialize, Serialize};

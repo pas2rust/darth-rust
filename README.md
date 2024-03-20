@@ -9,6 +9,7 @@ cargo add darth-rust
 cargo add regex
 cargo add colorful
 cargo add serde
+cargo add serde_json
 cargo add chrono
 ```
 
