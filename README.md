@@ -6,6 +6,7 @@ DarthRust is a Rust procedural macro library that aims to enhance developer prod
 ## Install
 ```bash
 cargo add darth-rust
+cargo add regex
 cargo add colorful
 cargo add serde
 cargo add chrono
