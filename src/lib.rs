@@ -1,3 +1,4 @@
+mod build;
 mod crates;
 mod generate_cache;
 mod generate_calc_methods;
@@ -17,6 +18,8 @@ mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
 mod generate_to_json_method;
+mod helpers;
+use build::{Build, BuildTrait};
 use crates::*;
 
 /// # Usage
@@ -37,28 +40,45 @@ use crates::*;
 #[proc_macro_derive(DarthRust)]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
+    let build = Build::new(input.clone());
     let struct_name = &input.ident;
-    let generics = &input.generics;
-    let data = &input.data;
-    let mut_getters = generate_mut_getters(data);
-    let getters = generate_getters(data);
-    let setters = generate_setters(data);
-    let calc_methods = generate_calc_methods(data);
-    let new = generate_new_method(data, generics);
-    let to_json = generate_to_json_method(&input);
-    let from_json = generate_from_json_method(&input);
-    let printers = generate_printers(&input);
-    let printers_success_by_field = generate_printers_success_by_field(&input);
-    let printers_by_field = generate_printers_by_field(&input);
-    let printters_rust_by_field = generate_printers_rust_by_field(&input);
-    let printers_info_by_field = generate_printers_info_by_field(&input);
-    let printers_err_by_field = generate_printers_err_by_field(&input);
-    let printers_warning_by_field = generate_printers_warning_by_field(&input);
-    let default = generate_default_method(data, generics);
-    let cache = generate_cache(data);
-    let is_regex = generate_is_regex_method(data);
-    let is_range = generate_is_range_method(data);
+    let cache_struct_name = syn::Ident::new(
+        &format!("Cache{}", struct_name),
+        proc_macro2::Span::call_site(),
+    );
+    let mut_getters = build.gen_mut_getters();
+    let getters = build.gen_getters();
+    let setters = build.gen_setters();
+    let calc_methods = build.gen_calc();
+    let new = build.gen_new();
+    let to_json = build.gen_to_json();
+    let from_json = build.gen_from_json();
+    let printers = build.gen_printers();
+    let printers_success_by_field = build.gen_printers_success_by_field();
+    let printers_by_field = build.gen_printers_by_field();
+    let printters_rust_by_field = build.gen_printers_rust_by_field();
+    let printers_info_by_field = build.gen_printers_info_by_field();
+    let printers_err_by_field = build.gen_printers_err_by_field();
+    let printers_warning_by_field = build.gen_printers_warning_by_field();
+    let default = build.gen_default();
+    let cache = build.gen_cache();
+    let is_regex = build.gen_is_regex();
+    let is_range = build.gen_is_range();
+    let cache_struct = quote! {
+        pub struct #cache_struct_name<'a, T> {
+            pub items: T,
+            pub expiration_by_item: Vec<(&'a str, Option<usize>)>,
+            pub last_access_by_utc: chrono::DateTime<chrono::Utc>,
+            pub last_access_by_local: chrono::DateTime<chrono::Local>,
+            pub created_at_local: chrono::DateTime<chrono::Local>,
+            pub created_at_utc: chrono::DateTime<chrono::Utc>,
+            pub updated_at_local: chrono::DateTime<chrono::Local>,
+            pub updated_at_utc: chrono::DateTime<chrono::Utc>,
+            pub access_count: usize,
+        }
+    };
     let expanded = quote! {
+        #cache_struct
         impl #struct_name {
             #cache
             #mut_getters

@@ -1,18 +1,6 @@
 use quote::quote;
-use syn::{Data, DeriveInput};
-
 /// printter
-pub fn generate_printers(input: &DeriveInput) -> proc_macro2::TokenStream {
-    match &input.data {
-        Data::Struct(data_struct) => &data_struct.fields,
-        _ => {
-            return syn::Error::new_spanned(
-                input,
-                "print can only be derived for structs",
-            )
-            .to_compile_error()
-        }
-    };
+pub fn generate_printers() -> proc_macro2::TokenStream {
     quote! {
         /// Print the struct with various labels and color-coded output.
         pub fn print_all_levels(&self, custom: &str) {

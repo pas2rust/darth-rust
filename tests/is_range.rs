@@ -19,17 +19,17 @@ fn is_range() {
         f32: 0.12,
     };
 
-    assert!(calc.is_usize_range(0, 20).is_ok());
-    assert!(calc.is_u8_range(0, 10).is_ok());
-    assert!(calc.is_u16_range(0, 500).is_ok());
-    assert!(calc.is_u32_range(0, 100000).is_ok());
-    assert!(calc.is_u64_range(0, 10000000000).is_ok());
-    assert!(calc.is_u128_range(0, 1000000000000000000000).is_ok());
-    assert!(calc.is_isize_range(-10, 0).is_ok());
-    assert!(calc.is_i16_range(-300, 0).is_ok());
-    assert!(calc.is_i32_range(-50000, 0).is_ok());
-    assert!(calc.is_i64_range(-3000000000, 0).is_ok());
-    assert!(calc.is_i128_range(-1000000000000000000000, 0).is_ok());
-    assert!(calc.is_f64_range(0.0, 2.0).is_ok());
-    assert!(calc.is_f32_range(0.0, 1.0).is_ok());
+    assert!(calc.is_range_usize(0, 20).is_ok());
+    assert!(calc.is_range_u8(0, 10).is_ok());
+    assert!(calc.is_range_u16(0, 500).is_ok());
+    assert!(calc.is_range_u32(0, 100000).is_ok());
+    assert!(calc.is_range_u64(0, 10000000000).is_ok());
+    assert!(calc.is_range_u128(0, 1000000000000000000000).is_ok());
+    assert!(calc.is_range_isize(-10, 0).is_ok());
+    assert!(calc.is_range_i16(-300, 0).is_ok());
+    assert!(calc.is_range_i32(-50000, 0).is_ok());
+    assert!(calc.is_range_i64(-3000000000, 0).is_ok());
+    assert!(calc.is_range_i128(-1000000000000000000000, 0).is_ok());
+    assert!(calc.is_range_f64(0.0, 2.0).is_ok());
+    assert!(calc.is_range_f32(0.0, 1.0).is_ok());
 }

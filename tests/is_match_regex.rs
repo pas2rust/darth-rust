@@ -11,12 +11,11 @@ fn is_match_regex() {
         30,
         vec![],
     );
-
-    assert!(user.is_match_id_regex(r"^\d+$").is_ok());
-    assert!(user.is_match_name_regex(r"^[a-zA-Z\s]+$").is_ok());
-    assert!(user.is_match_password_regex(r"^[a-zA-Z0-9]+$").is_ok());
+    assert!(user.is_match_regex_id(r"^\d+$").is_ok());
+    assert!(user.is_match_regex_name(r"^[a-zA-Z\s]+$").is_ok());
+    assert!(user.is_match_regex_password(r"^[a-zA-Z0-9]+$").is_ok());
     assert!(user
-        .is_match_email_regex(
+        .is_match_regex_email(
             r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         )
         .is_ok());
