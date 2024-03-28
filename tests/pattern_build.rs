@@ -3,13 +3,15 @@ pub use config::User;
 
 #[test]
 fn test_user_builder() {
-    let user = User::build()
+    let user = User::builder()
         .id("123")
         .name("John Doe")
         .password("password123")
         .email("johndoe@example.com")
         .age(30)
-        .friends(vec![]);
+        .friends(vec![])
+        .build()
+        .unwrap();
 
     assert_eq!(user.id, "123");
     assert_eq!(user.name, "John Doe");
