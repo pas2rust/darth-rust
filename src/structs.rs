@@ -9,7 +9,8 @@ pub trait StructsTrait {
 
 impl StructsTrait for Structs {
     fn gen_cache_struct(struct_name: Ident) -> proc_macro2::TokenStream {
-        let cache_struct_name = Helpers::new_ident_camel_case("Cache", struct_name);
+        let cache_struct_name =
+            Helpers::new_ident_camel_case("Cache", struct_name);
         quote! {
             pub struct #cache_struct_name<'a, T> {
                 pub items: T,

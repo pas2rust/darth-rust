@@ -1,12 +1,13 @@
 mod build;
 mod crates;
-mod generate_vec_cache_sync;
-mod generate_math_methods;
+mod generate_build_method;
 mod generate_default_method;
 mod generate_from_json_method;
 mod generate_getters;
+mod generate_hash_cache_sync;
 mod generate_is_range_method;
 mod generate_is_regex_method;
+mod generate_math_methods;
 mod generate_mut_getters;
 mod generate_new_method;
 mod generate_printers;
@@ -18,9 +19,9 @@ mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
 mod generate_to_json_method;
+mod generate_vec_cache_sync;
 mod helpers;
 mod structs;
-mod generate_hash_cache_sync;
 use build::{Build, BuildTrait};
 use crates::*;
 
@@ -64,6 +65,7 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let is_regex = build.gen_is_regex();
     let is_range = build.gen_is_range();
     let cache_struct = build.gen_cache_struct();
+    let pattern_build = build.gen_pattern_build();
     let expanded = quote! {
         #cache_struct
         impl #struct_name {
@@ -86,6 +88,7 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #is_regex
             #is_range
             #hash_cache_sync
+            #pattern_build
         }
     };
     expanded.into()

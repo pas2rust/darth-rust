@@ -19,10 +19,10 @@ pub struct CalcStruct {
 
 #[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct User {
-    id: String,
-    name: String,
-    password: String,
-    email: String,
-    age: u8,
-    friends: Vec<User>,
+    pub id: String,
+    pub name: String,
+    pub password: String,
+    pub email: String,
+    pub age: u8,
+    pub friends: Vec<User>,
 }
