@@ -1,6 +1,6 @@
 pub use crate::{
-    generate_cache::generate_cache,
-    generate_calc_methods::generate_calc_methods,
+    generate_vec_cache_sync::generate_vec_cache_sync,
+    generate_math_methods::generate_math_methods,
     generate_default_method::generate_default_method,
     generate_from_json_method::generate_from_json_method,
     generate_getters::generate_getters,
@@ -17,6 +17,7 @@ pub use crate::{
     generate_printers_warning_by_field::generate_printers_warning_by_field,
     generate_setters::generate_setters,
     generate_to_json_method::generate_to_json_method,
+    generate_hash_cache_sync::generate_hash_cache_sync
 };
 pub use proc_macro::TokenStream;
 pub use quote::quote;

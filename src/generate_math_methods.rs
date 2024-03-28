@@ -3,7 +3,7 @@ use syn::Type;
 
 use crate::helpers::{Helpers, HelpersTrait};
 
-pub fn generate_calc_methods(helpers: Helpers) -> proc_macro2::TokenStream {
+pub fn generate_math_methods(helpers: Helpers) -> proc_macro2::TokenStream {
     let named_fields = helpers.get_named_fields().unwrap();
     let methods = named_fields.named.iter().filter_map(|field| {
         let field_name = field.ident.as_ref().unwrap();

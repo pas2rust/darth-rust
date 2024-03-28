@@ -11,6 +11,7 @@ pub trait HelpersTrait {
     fn get_fields(&self) -> Result<&Fields, &str>;
     fn new(data: Data) -> Self;
     fn new_ident(prefix: &str, field_name: Ident) -> Ident;
+    fn new_ident_camel_case(prefix: &str, field_name: Ident) -> Ident;
 }
 
 impl HelpersTrait for Helpers {
@@ -41,6 +42,12 @@ impl HelpersTrait for Helpers {
     fn new_ident(prefix: &str, field_name: Ident) -> Ident {
         Ident::new(
             format!("{}_{}", prefix, field_name).as_str(),
+            field_name.span(),
+        )
+    }
+    fn new_ident_camel_case(prefix: &str, field_name: Ident) -> Ident {
+        Ident::new(
+            format!("{}{}", prefix, field_name).as_str(),
             field_name.span(),
         )
     }

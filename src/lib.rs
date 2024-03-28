@@ -1,7 +1,7 @@
 mod build;
 mod crates;
-mod generate_cache;
-mod generate_calc_methods;
+mod generate_vec_cache_sync;
+mod generate_math_methods;
 mod generate_default_method;
 mod generate_from_json_method;
 mod generate_getters;
@@ -19,6 +19,8 @@ mod generate_printers_warning_by_field;
 mod generate_setters;
 mod generate_to_json_method;
 mod helpers;
+mod structs;
+mod generate_hash_cache_sync;
 use build::{Build, BuildTrait};
 use crates::*;
 
@@ -42,14 +44,10 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let build = Build::new(input.clone());
     let struct_name = &input.ident;
-    let cache_struct_name = syn::Ident::new(
-        &format!("Cache{}", struct_name),
-        proc_macro2::Span::call_site(),
-    );
     let mut_getters = build.gen_mut_getters();
     let getters = build.gen_getters();
     let setters = build.gen_setters();
-    let calc_methods = build.gen_calc();
+    let math = build.gen_math();
     let new = build.gen_new();
     let to_json = build.gen_to_json();
     let from_json = build.gen_from_json();
@@ -61,26 +59,15 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let printers_err_by_field = build.gen_printers_err_by_field();
     let printers_warning_by_field = build.gen_printers_warning_by_field();
     let default = build.gen_default();
-    let cache = build.gen_cache();
+    let vec_cache_sync = build.gen_vec_cache_sync();
+    let hash_cache_sync = build.gen_hash_cache_sync();
     let is_regex = build.gen_is_regex();
     let is_range = build.gen_is_range();
-    let cache_struct = quote! {
-        pub struct #cache_struct_name<'a, T> {
-            pub items: T,
-            pub expiration_by_item: Vec<(&'a str, Option<usize>)>,
-            pub last_access_by_utc: chrono::DateTime<chrono::Utc>,
-            pub last_access_by_local: chrono::DateTime<chrono::Local>,
-            pub created_at_local: chrono::DateTime<chrono::Local>,
-            pub created_at_utc: chrono::DateTime<chrono::Utc>,
-            pub updated_at_local: chrono::DateTime<chrono::Local>,
-            pub updated_at_utc: chrono::DateTime<chrono::Utc>,
-            pub access_count: usize,
-        }
-    };
+    let cache_struct = build.gen_cache_struct();
     let expanded = quote! {
         #cache_struct
         impl #struct_name {
-            #cache
+            #vec_cache_sync
             #mut_getters
             #from_json
             #default
@@ -95,9 +82,10 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #printers_info_by_field
             #printers_warning_by_field
             #printers_err_by_field
-            #calc_methods
+            #math
             #is_regex
             #is_range
+            #hash_cache_sync
         }
     };
     expanded.into()

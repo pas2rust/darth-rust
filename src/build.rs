@@ -2,15 +2,7 @@ use proc_macro2::TokenStream;
 use syn::DeriveInput;
 
 use crate::{
-    generate_cache, generate_calc_methods, generate_default_method,
-    generate_from_json_method, generate_getters, generate_is_range_method,
-    generate_is_regex_method, generate_mut_getters, generate_new_method,
-    generate_printers, generate_printers_by_field,
-    generate_printers_err_by_field, generate_printers_info_by_field,
-    generate_printers_rust_by_field, generate_printers_success_by_field,
-    generate_printers_warning_by_field, generate_setters,
-    generate_to_json_method,
-    helpers::{Helpers, HelpersTrait},
+    generate_default_method, generate_from_json_method, generate_getters, generate_hash_cache_sync, generate_is_range_method, generate_is_regex_method, generate_math_methods, generate_mut_getters, generate_new_method, generate_printers, generate_printers_by_field, generate_printers_err_by_field, generate_printers_info_by_field, generate_printers_rust_by_field, generate_printers_success_by_field, generate_printers_warning_by_field, generate_setters, generate_to_json_method, generate_vec_cache_sync, helpers::{Helpers, HelpersTrait}, structs::{Structs, StructsTrait}
 };
 
 pub struct Build {
@@ -18,8 +10,8 @@ pub struct Build {
 }
 
 pub trait BuildTrait {
-    fn gen_cache(&self) -> TokenStream;
-    fn gen_calc(&self) -> TokenStream;
+    fn gen_vec_cache_sync(&self) -> TokenStream;
+    fn gen_math(&self) -> TokenStream;
     fn gen_default(&self) -> TokenStream;
     fn gen_from_json(&self) -> TokenStream;
     fn gen_getters(&self) -> TokenStream;
@@ -36,6 +28,8 @@ pub trait BuildTrait {
     fn gen_printers(&self) -> TokenStream;
     fn gen_setters(&self) -> TokenStream;
     fn gen_to_json(&self) -> TokenStream;
+    fn gen_cache_struct(&self) -> TokenStream;
+    fn gen_hash_cache_sync(&self) -> TokenStream;
     fn new(derive_input: DeriveInput) -> Self;
 }
 
@@ -43,19 +37,19 @@ impl BuildTrait for Build {
     fn new(derive_input: DeriveInput) -> Self {
         Self { derive_input }
     }
-    fn gen_cache(&self) -> TokenStream {
+    fn gen_vec_cache_sync(&self) -> TokenStream {
         let input = &self.derive_input;
         let helpers = Helpers::new(input.data.clone());
         let cache_name = syn::Ident::new(
             &format!("Cache{}", input.ident.clone()),
             proc_macro2::Span::call_site(),
         );
-        generate_cache(helpers, &cache_name)
+        generate_vec_cache_sync(helpers, &cache_name)
     }
-    fn gen_calc(&self) -> TokenStream {
+    fn gen_math(&self) -> TokenStream {
         let input = &self.derive_input;
         let helpers = Helpers::new(input.data.clone());
-        generate_calc_methods(helpers)
+        generate_math_methods(helpers)
     }
     fn gen_default(&self) -> TokenStream {
         let input = &self.derive_input;
@@ -135,5 +129,18 @@ impl BuildTrait for Build {
         let input = &self.derive_input;
         let helpers = Helpers::new(input.data.clone());
         generate_to_json_method(helpers)
+    }
+    fn gen_cache_struct(&self) -> TokenStream {
+        let input = &self.derive_input;
+        Structs::gen_cache_struct(input.ident.clone())
+    }
+    fn gen_hash_cache_sync(&self) -> TokenStream {
+        let input = &self.derive_input;
+        let helpers = Helpers::new(input.data.clone());
+        let cache_name = syn::Ident::new(
+            &format!("Cache{}", input.ident.clone()),
+            proc_macro2::Span::call_site(),
+        );
+        generate_hash_cache_sync(helpers, &cache_name)
     }
 }
