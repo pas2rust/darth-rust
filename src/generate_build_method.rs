@@ -15,8 +15,8 @@ pub fn generate_build_method(helpers: Helpers) -> proc_macro2::TokenStream {
             }
     });
 
-    let static_method = quote! {
-        pub fn builder() -> Self {
+    let static_methods = quote! {
+        pub fn new() -> Self {
             Self::default()
         }
         pub fn build(self) -> Result<Self, String> {
@@ -25,7 +25,7 @@ pub fn generate_build_method(helpers: Helpers) -> proc_macro2::TokenStream {
     };
 
     quote! {
-        #static_method
+        #static_methods
         #(#methods)*
     }
 }

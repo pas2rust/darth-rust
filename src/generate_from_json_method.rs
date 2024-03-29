@@ -7,9 +7,9 @@ pub fn generate_from_json_method(
     helpers: Helpers,
     struct_name: &Ident,
 ) -> proc_macro2::TokenStream {
-    let fields = helpers.get_fields().unwrap();
     let from_json_code = {
-        let field_deserialization = fields.iter().map(|field| {
+        let field_deserialization = helpers.get_fields().unwrap()
+        .iter().map(|field| {
             let field_name = &field.ident;
             quote! {
                 #field_name: match json_object.get(stringify!(#field_name)) {

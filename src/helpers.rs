@@ -1,5 +1,5 @@
 use proc_macro2::Ident;
-use syn::{Data, DataStruct, Fields, FieldsNamed};
+use syn::{Data, DataStruct, Fields, FieldsNamed, Type, TypePath};
 
 pub struct Helpers {
     pub data: Data,
@@ -12,6 +12,7 @@ pub trait HelpersTrait {
     fn new(data: Data) -> Self;
     fn new_ident(prefix: &str, field_name: Ident) -> Ident;
     fn new_ident_camel_case(prefix: &str, field_name: Ident) -> Ident;
+    fn get_type_path(ty: &Type) -> Result<&TypePath, &str>;
 }
 
 impl HelpersTrait for Helpers {
@@ -37,6 +38,12 @@ impl HelpersTrait for Helpers {
         match &self.data {
             Data::Struct(data_struct) => Ok(data_struct),
             _ => Err("Data is not a struct"),
+        }
+    }
+    fn get_type_path(ty: &Type) -> Result<&TypePath, &str> {
+        match ty {
+            Type::Path(type_path) => Ok(type_path),
+            _ => Err("Type is not a path"),
         }
     }
     fn new_ident(prefix: &str, field_name: Ident) -> Ident {

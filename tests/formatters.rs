@@ -5,14 +5,15 @@ use serde_json::json;
 #[test]
 pub fn formatters() {
     let friends = vec![User::default(); 10];
-    let user_new = User::new(
-        "id".into(),
-        "name".into(),
-        "password".into(),
-        "email".into(),
-        18,
-        friends.clone(),
-    );
+    let user_new = User::new()
+        .id("id")
+        .name("name")
+        .password("password")
+        .email("email")
+        .age(18)
+        .friends(friends.clone())
+        .build()
+        .unwrap();
 
     let user_json_value = user_new.to_json();
     let user_expected_json = json!({

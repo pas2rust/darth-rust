@@ -5,11 +5,8 @@ mod generate_default_method;
 mod generate_from_json_method;
 mod generate_getters;
 mod generate_hash_cache_sync;
-mod generate_is_range_method;
-mod generate_is_regex_method;
 mod generate_math_methods;
 mod generate_mut_getters;
-mod generate_new_method;
 mod generate_printers;
 mod generate_printers_by_field;
 mod generate_printers_err_by_field;
@@ -49,7 +46,6 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let getters = build.gen_getters();
     let setters = build.gen_setters();
     let math = build.gen_math();
-    let new = build.gen_new();
     let to_json = build.gen_to_json();
     let from_json = build.gen_from_json();
     let printers = build.gen_printers();
@@ -62,8 +58,6 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
     let default = build.gen_default();
     let vec_cache_sync = build.gen_vec_cache_sync();
     let hash_cache_sync = build.gen_hash_cache_sync();
-    let is_regex = build.gen_is_regex();
-    let is_range = build.gen_is_range();
     let cache_struct = build.gen_cache_struct();
     let pattern_build = build.gen_pattern_build();
     let expanded = quote! {
@@ -74,7 +68,6 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #from_json
             #default
             #to_json
-            #new
             #getters
             #setters
             #printers
@@ -85,8 +78,6 @@ pub fn darth_rust(input: TokenStream) -> TokenStream {
             #printers_warning_by_field
             #printers_err_by_field
             #math
-            #is_regex
-            #is_range
             #hash_cache_sync
             #pattern_build
         }

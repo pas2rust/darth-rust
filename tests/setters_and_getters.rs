@@ -4,14 +4,15 @@ pub use config::User;
 #[test]
 pub fn test_setters() {
     let friends = vec![User::default(); 10];
-    let mut user_new = User::new(
-        "id".into(),
-        "name".into(),
-        "password".into(),
-        "email".into(),
-        18,
-        friends.clone(),
-    );
+    let mut user_new = User::new()
+        .id("id")
+        .name("name")
+        .password("password")
+        .email("email")
+        .age(18)
+        .friends(friends.clone())
+        .build()
+        .unwrap();
 
     user_new.set_age(12);
     user_new.set_email("newemail");
@@ -29,14 +30,15 @@ pub fn test_setters() {
 #[test]
 pub fn test_getters_mut() {
     let friends = vec![User::default(); 10];
-    let mut user_new = User::new(
-        "id".into(),
-        "name".into(),
-        "password".into(),
-        "email".into(),
-        18,
-        friends.clone(),
-    );
+    let mut user_new = User::new()
+        .id("id")
+        .name("name")
+        .password("password")
+        .email("email")
+        .age(18)
+        .friends(friends.clone())
+        .build()
+        .unwrap();
 
     *user_new.get_mut_age() = 24;
     *user_new.get_mut_email() = "mutemail".to_string();
@@ -53,14 +55,15 @@ pub fn test_getters_mut() {
 #[test]
 pub fn test_getters_mut_setters() {
     let friends = vec![User::default(); 10];
-    let mut user_new = User::new(
-        "id".into(),
-        "name".into(),
-        "password".into(),
-        "email".into(),
-        18,
-        friends.clone(),
-    );
+    let mut user_new = User::new()
+        .id("id")
+        .name("name")
+        .password("password")
+        .email("email")
+        .age(18)
+        .friends(friends.clone())
+        .build()
+        .unwrap();
     let mut user_default = User::default();
 
     *user_new.get_mut_age() = 24;

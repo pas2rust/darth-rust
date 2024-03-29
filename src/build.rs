@@ -3,9 +3,8 @@ use syn::DeriveInput;
 
 use crate::{
     generate_build_method, generate_default_method, generate_from_json_method,
-    generate_getters, generate_hash_cache_sync, generate_is_range_method,
-    generate_is_regex_method, generate_math_methods, generate_mut_getters,
-    generate_new_method, generate_printers, generate_printers_by_field,
+    generate_getters, generate_hash_cache_sync, generate_math_methods,
+    generate_mut_getters, generate_printers, generate_printers_by_field,
     generate_printers_err_by_field, generate_printers_info_by_field,
     generate_printers_rust_by_field, generate_printers_success_by_field,
     generate_printers_warning_by_field, generate_setters,
@@ -24,10 +23,7 @@ pub trait BuildTrait {
     fn gen_default(&self) -> TokenStream;
     fn gen_from_json(&self) -> TokenStream;
     fn gen_getters(&self) -> TokenStream;
-    fn gen_is_range(&self) -> TokenStream;
-    fn gen_is_regex(&self) -> TokenStream;
     fn gen_mut_getters(&self) -> TokenStream;
-    fn gen_new(&self) -> TokenStream;
     fn gen_printers_by_field(&self) -> TokenStream;
     fn gen_printers_err_by_field(&self) -> TokenStream;
     fn gen_printers_info_by_field(&self) -> TokenStream;
@@ -77,25 +73,10 @@ impl BuildTrait for Build {
         let helpers = Helpers::new(input.data.clone());
         generate_getters(helpers)
     }
-    fn gen_is_range(&self) -> TokenStream {
-        let input = &self.derive_input;
-        let helpers = Helpers::new(input.data.clone());
-        generate_is_range_method(helpers)
-    }
-    fn gen_is_regex(&self) -> TokenStream {
-        let input = &self.derive_input;
-        let helpers = Helpers::new(input.data.clone());
-        generate_is_regex_method(helpers)
-    }
     fn gen_mut_getters(&self) -> TokenStream {
         let input = &self.derive_input;
         let helpers = Helpers::new(input.data.clone());
         generate_mut_getters(helpers)
-    }
-    fn gen_new(&self) -> TokenStream {
-        let input = &self.derive_input;
-        let helpers = Helpers::new(input.data.clone());
-        generate_new_method(helpers, &input.generics)
     }
     fn gen_printers_by_field(&self) -> TokenStream {
         let input = &self.derive_input;
@@ -147,10 +128,8 @@ impl BuildTrait for Build {
     fn gen_hash_cache_sync(&self) -> TokenStream {
         let input = &self.derive_input;
         let helpers = Helpers::new(input.data.clone());
-        let cache_name = syn::Ident::new(
-            &format!("Cache{}", input.ident.clone()),
-            proc_macro2::Span::call_site(),
-        );
+        let cache_name =
+            Helpers::new_ident_camel_case("Cache", input.ident.clone());
         generate_hash_cache_sync(helpers, &cache_name)
     }
     fn gen_pattern_build(&self) -> TokenStream {

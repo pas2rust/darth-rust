@@ -3,7 +3,7 @@ pub use config::User;
 
 #[test]
 fn test_user_builder() {
-    let user = User::builder()
+    let user = User::new()
         .id("123")
         .name("John Doe")
         .password("password123")

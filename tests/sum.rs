@@ -3,8 +3,22 @@ pub use config::CalcStruct;
 
 #[test]
 fn test_sum_usize() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_usize(5);
     calc_struct.print_err_usize("");
     assert_eq!(calc_struct.usize, 6);
@@ -12,8 +26,22 @@ fn test_sum_usize() {
 
 #[test]
 fn test_sum_u8() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_u8(5);
     calc_struct.print_err_u8("");
     assert_eq!(calc_struct.u8, 7);
@@ -21,8 +49,22 @@ fn test_sum_u8() {
 
 #[test]
 fn test_sum_u16() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_u16(5);
     calc_struct.print_err_u16("");
     assert_eq!(calc_struct.u16, 8);
@@ -30,8 +72,22 @@ fn test_sum_u16() {
 
 #[test]
 fn test_sum_u32() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_u32(5);
     calc_struct.print_err_u32("");
     assert_eq!(calc_struct.u32, 9);
@@ -39,8 +95,22 @@ fn test_sum_u32() {
 
 #[test]
 fn test_sum_u64() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_u64(5);
     calc_struct.print_err_u64("");
     assert_eq!(calc_struct.u64, 10);
@@ -48,8 +118,22 @@ fn test_sum_u64() {
 
 #[test]
 fn test_sum_u128() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_u128(5);
     calc_struct.print_err_u128("");
     assert_eq!(calc_struct.u128, 11);
@@ -57,8 +141,22 @@ fn test_sum_u128() {
 
 #[test]
 fn test_sum_isize() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_isize(5);
     calc_struct.print_err_isize("");
     assert_eq!(calc_struct.isize, 12);
@@ -66,8 +164,22 @@ fn test_sum_isize() {
 
 #[test]
 fn test_sum_i16() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_i16(5);
     calc_struct.print_err_i16("");
     assert_eq!(calc_struct.i16, 13);
@@ -75,8 +187,22 @@ fn test_sum_i16() {
 
 #[test]
 fn test_sum_i32() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_i32(5);
     calc_struct.print_err_i32("");
     assert_eq!(calc_struct.i32, 14);
@@ -84,8 +210,22 @@ fn test_sum_i32() {
 
 #[test]
 fn test_sum_i64() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_i64(5);
     calc_struct.print_err_i64("");
     assert_eq!(calc_struct.i64, 15);
@@ -93,8 +233,22 @@ fn test_sum_i64() {
 
 #[test]
 fn test_sum_i128() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_i128(5);
     calc_struct.print_err_i128("");
     assert_eq!(calc_struct.i128, 16);
@@ -102,8 +256,22 @@ fn test_sum_i128() {
 
 #[test]
 fn test_sum_f64() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_f64(5.0);
     calc_struct.print_err_f64("");
     assert_eq!(calc_struct.f64, 17.0);
@@ -111,8 +279,22 @@ fn test_sum_f64() {
 
 #[test]
 fn test_sum_f32() {
-    let mut calc_struct =
-        CalcStruct::new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.0, 13.0);
+    let mut calc_struct = CalcStruct::new()
+        .usize::<usize>(1)
+        .u8::<u8>(2)
+        .u16::<u16>(3)
+        .u32::<u32>(4)
+        .u64::<u64>(5)
+        .u128::<u128>(6)
+        .isize::<isize>(7)
+        .i16::<i16>(8)
+        .i32(9)
+        .i64(10)
+        .i128(11)
+        .f64(12.0)
+        .f32(13.0)
+        .build()
+        .unwrap();
     calc_struct.sum_f32(5.0);
     calc_struct.print_err_f32("");
     assert_eq!(calc_struct.f32, 18.0);
