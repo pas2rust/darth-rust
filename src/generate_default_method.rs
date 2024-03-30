@@ -1,10 +1,8 @@
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
-use syn::Generics;
-pub fn generate_default_method(
-    helpers: Helpers,
-    generics: &Generics,
-) -> proc_macro2::TokenStream {
+
+pub fn generate_default_method(helpers: Helpers) -> proc_macro2::TokenStream {
+    let generics = &helpers.input.as_ref().unwrap().generics;
     let data_struct = helpers.get_data_struct().unwrap();
     let field_names = data_struct.fields.iter().map(|field| {
         let field_name = &field.ident;

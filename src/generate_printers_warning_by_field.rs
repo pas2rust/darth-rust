@@ -1,12 +1,11 @@
 use quote::quote;
-use syn::Ident;
 
 use crate::helpers::{Helpers, HelpersTrait};
 
 pub fn generate_printers_warning_by_field(
     helpers: Helpers,
-    struct_name: Ident,
 ) -> proc_macro2::TokenStream {
+    let struct_name = &helpers.input.as_ref().unwrap().ident;
     let print_field_methods =
         helpers.get_named_fields().unwrap().named.iter().map(|field| {
             let field_name = field.ident.as_ref().unwrap();

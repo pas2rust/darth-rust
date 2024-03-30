@@ -1,11 +1,8 @@
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
-use syn::Ident;
 
-pub fn generate_vec_cache_sync(
-    helpers: Helpers,
-    cache_struct_name: &Ident,
-) -> proc_macro2::TokenStream {
+pub fn generate_vec_cache_sync(helpers: Helpers) -> proc_macro2::TokenStream {
+    let cache_struct_name = helpers.cache_name.as_ref().unwrap();
     let methods = helpers.get_named_fields().unwrap()
     .named.iter().map(|field| {
         let field_name = field.ident.as_ref().unwrap();
