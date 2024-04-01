@@ -1,10 +1,23 @@
-mod config;
-pub use config::User;
+use darth_rust::DarthRust;
+use serde::{Deserialize, Serialize};
+
+#[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
+pub struct User {
+    #[pattern(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$")]
+    pub id: String,
+    #[pattern(r"^[a-zA-Z]{3,20}\s[a-zA-Z]{3,20}$")]
+    pub name: String,
+    #[pattern(r"^[a-zA-Z]{6,20}")]
+    pub password: String,
+    pub email: String,
+    pub age: u8,
+    pub friends: Vec<User>,
+}
 
 #[test]
 fn test_user_builder() {
     let user = User::new()
-        .id("123")
+        .id("123e4567-e89b-12d3-a456-426614174000")
         .name("John Doe")
         .password("password123")
         .email("johndoe@example.com")
@@ -13,7 +26,7 @@ fn test_user_builder() {
         .build()
         .unwrap();
 
-    assert_eq!(user.id, "123");
+    assert_eq!(user.id, "123e4567-e89b-12d3-a456-426614174000");
     assert_eq!(user.name, "John Doe");
     assert_eq!(user.password, "password123");
     assert_eq!(user.email, "johndoe@example.com");

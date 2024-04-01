@@ -37,7 +37,7 @@ use crates::*;
 ///     field2: i32,
 /// }
 /// ```
-#[proc_macro_derive(DarthRust, attributes(validate))]
+#[proc_macro_derive(DarthRust, attributes(pattern))]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let build = Build::new(input.clone());

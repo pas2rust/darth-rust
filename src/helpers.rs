@@ -1,7 +1,7 @@
 use proc_macro2::Ident;
 use syn::{
-    Attribute, Data, DataStruct, DeriveInput, Fields, FieldsNamed, Type,
-    TypePath,
+    Attribute, Data, DataStruct, DeriveInput, Fields, FieldsNamed, LitStr,
+    Type, TypePath,
 };
 
 pub struct Helpers {
@@ -19,7 +19,10 @@ pub trait HelpersTrait {
     fn new_ident(prefix: &str, field_name: Ident) -> Ident;
     fn new_ident_camel_case(prefix: &str, field_name: Ident) -> Ident;
     fn get_type_path(ty: &Type) -> Result<&TypePath, &str>;
-    fn get_attr(self, name: &str) -> Option<Attribute>;
+    fn get_attr(
+        attributes: Vec<Attribute>,
+        name: &str,
+    ) -> Result<LitStr, String>;
 }
 
 impl HelpersTrait for Helpers {
@@ -73,21 +76,13 @@ impl HelpersTrait for Helpers {
             field_name.span(),
         )
     }
-    fn get_attr(self, name: &str) -> Option<Attribute> {
-        self.input
-            .as_ref()
-            .unwrap()
-            .attrs
-            .iter()
-            .find(|a| match &a.meta {
-                syn::Meta::List(list) => {
-                    list.tokens.clone().into_iter().any(|t| match t {
-                        proc_macro2::TokenTree::Ident(i) => i == name,
-                        _ => false,
-                    })
-                }
-                _ => false,
-            })
-            .cloned()
+    fn get_attr(
+        attributes: Vec<Attribute>,
+        name: &str,
+    ) -> Result<LitStr, String> {
+        match attributes.iter().find(|attr| attr.path().is_ident(name)) {
+            Some(attr) => Ok(attr.parse_args().unwrap()),
+            None => Err(format!("Attribute {} not found", name)),
+        }
     }
 }

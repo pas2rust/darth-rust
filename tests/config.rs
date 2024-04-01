@@ -1,5 +1,16 @@
 use darth_rust::DarthRust;
 use serde::{Deserialize, Serialize};
+
+#[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
+pub struct User {
+    pub id: String,
+    pub name: String,
+    pub password: String,
+    pub email: String,
+    pub age: u8,
+    pub friends: Vec<User>,
+}
+
 #[derive(Debug, DarthRust, Clone)]
 pub struct CalcStruct {
     pub usize: usize,
@@ -15,14 +26,4 @@ pub struct CalcStruct {
     pub i128: i128,
     pub f64: f64,
     pub f32: f32,
-}
-
-#[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
-pub struct User {
-    pub id: String,
-    pub name: String,
-    pub password: String,
-    pub email: String,
-    pub age: u8,
-    pub friends: Vec<User>,
 }
