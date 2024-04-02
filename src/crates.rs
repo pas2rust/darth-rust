@@ -17,6 +17,9 @@ pub use crate::{
     generate_to_box_method::generate_to_box_method,
     generate_to_json_method::generate_to_json_method,
     generate_vec_cache_sync::generate_vec_cache_sync,
+    generate_to_rc_method::generate_to_rc_method,
+    generate_to_ref_cell_method::generate_to_ref_cell_method,
+    generate_to_rc_weak_method::generate_to_rc_weak_method
 };
 pub use proc_macro::TokenStream;
 pub use quote::quote;
