@@ -14,9 +14,9 @@ pub use crate::{
     generate_printers_success_by_field::generate_printers_success_by_field,
     generate_printers_warning_by_field::generate_printers_warning_by_field,
     generate_setters::generate_setters,
+    generate_to_box_method::generate_to_box_method,
     generate_to_json_method::generate_to_json_method,
     generate_vec_cache_sync::generate_vec_cache_sync,
-    generate_to_box_method::generate_to_box_method,
 };
 pub use proc_macro::TokenStream;
 pub use quote::quote;
