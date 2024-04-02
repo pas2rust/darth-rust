@@ -4,6 +4,7 @@ use syn::{
     Type, TypePath,
 };
 
+#[derive(Clone)]
 pub struct Helpers {
     pub input: Option<DeriveInput>,
     pub cache_name: Option<Ident>,

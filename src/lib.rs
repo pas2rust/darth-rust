@@ -21,6 +21,7 @@ mod helpers;
 mod structs;
 use build::{Build, BuildTrait};
 use crates::*;
+use structs::{Structs, StructsTrait};
 
 /// # Usage
 /// ### run `cargo add regex`
@@ -40,46 +41,14 @@ use crates::*;
 #[proc_macro_derive(DarthRust, attributes(pattern))]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
+    let cache_struct = Structs::gen_cache_struct(input.clone().ident);
     let build = Build::new(input.clone());
     let struct_name = &input.ident;
-    let mut_getters = build.gen_mut_getters();
-    let getters = build.gen_getters();
-    let setters = build.gen_setters();
-    let math = build.gen_math();
-    let to_json = build.gen_to_json();
-    let from_json = build.gen_from_json();
-    let printers = build.gen_printers();
-    let printers_success_by_field = build.gen_printers_success_by_field();
-    let printers_by_field = build.gen_printers_by_field();
-    let printters_rust_by_field = build.gen_printers_rust_by_field();
-    let printers_info_by_field = build.gen_printers_info_by_field();
-    let printers_err_by_field = build.gen_printers_err_by_field();
-    let printers_warning_by_field = build.gen_printers_warning_by_field();
-    let default = build.gen_default();
-    let vec_cache_sync = build.gen_vec_cache_sync();
-    let hash_cache_sync = build.gen_hash_cache_sync();
-    let cache_struct = build.gen_cache_struct();
-    let pattern_build = build.gen_pattern_build();
+    let methods = build.gen();
     let expanded = quote! {
         #cache_struct
         impl #struct_name {
-            #vec_cache_sync
-            #mut_getters
-            #from_json
-            #default
-            #to_json
-            #getters
-            #setters
-            #printers
-            #printers_success_by_field
-            #printers_by_field
-            #printters_rust_by_field
-            #printers_info_by_field
-            #printers_warning_by_field
-            #printers_err_by_field
-            #math
-            #hash_cache_sync
-            #pattern_build
+            #methods
         }
     };
     expanded.into()
