@@ -14,7 +14,6 @@ pub fn formatters() {
         .friends(friends.clone())
         .build()
         .unwrap();
-
     let user_json_value = user_new.to_json();
     let user_expected_json = json!({
         "id": *user_new.get_id(),

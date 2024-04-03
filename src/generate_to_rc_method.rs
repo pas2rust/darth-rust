@@ -1,5 +1,5 @@
-use quote::quote;
 use proc_macro2::TokenStream;
+use quote::quote;
 
 pub fn generate_to_rc_method() -> TokenStream {
     quote! {

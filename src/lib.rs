@@ -12,20 +12,19 @@ mod generate_printers_by_field;
 mod generate_printers_err_by_field;
 mod generate_printers_info_by_field;
 mod generate_printers_rust_by_field;
-mod generate_to_ref_cell_method;
 mod generate_printers_success_by_field;
 mod generate_printers_warning_by_field;
 mod generate_setters;
-mod generate_to_rc_weak_method;
 mod generate_to_box_method;
 mod generate_to_json_method;
-mod generate_vec_cache_sync;
 mod generate_to_rc_method;
+mod generate_to_rc_weak_method;
+mod generate_to_ref_cell_method;
+mod generate_vec_cache_sync;
 mod helpers;
 mod structs;
-use build::{Build, BuildTrait};
+
 use crates::*;
-use structs::{Structs, StructsTrait};
 
 /// # Usage
 /// ### run `cargo add regex`
@@ -42,7 +41,7 @@ use structs::{Structs, StructsTrait};
 ///     field2: i32,
 /// }
 /// ```
-#[proc_macro_derive(DarthRust, attributes(pattern))]
+#[proc_macro_derive(DarthRust, attributes(pattern, min, max))]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let cache_struct = Structs::gen_cache_struct(input.clone().ident);

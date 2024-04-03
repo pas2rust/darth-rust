@@ -1,4 +1,5 @@
 pub use crate::{
+    build::{Build, BuildTrait},
     generate_build_method::generate_build_method,
     generate_default_method::generate_default_method,
     generate_from_json_method::generate_from_json_method,
@@ -16,10 +17,11 @@ pub use crate::{
     generate_setters::generate_setters,
     generate_to_box_method::generate_to_box_method,
     generate_to_json_method::generate_to_json_method,
-    generate_vec_cache_sync::generate_vec_cache_sync,
     generate_to_rc_method::generate_to_rc_method,
+    generate_to_rc_weak_method::generate_to_rc_weak_method,
     generate_to_ref_cell_method::generate_to_ref_cell_method,
-    generate_to_rc_weak_method::generate_to_rc_weak_method
+    generate_vec_cache_sync::generate_vec_cache_sync,
+    structs::{Structs, StructsTrait},
 };
 pub use proc_macro::TokenStream;
 pub use quote::quote;

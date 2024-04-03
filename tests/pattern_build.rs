@@ -10,6 +10,8 @@ pub struct User {
     #[pattern(r"^[a-zA-Z]{6,20}")]
     pub password: String,
     pub email: String,
+    #[min(18)]
+    #[max(30)]
     pub age: u8,
     pub friends: Vec<User>,
 }

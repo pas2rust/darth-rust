@@ -1,7 +1,7 @@
 use proc_macro2::Ident;
 use syn::{
-    Attribute, Data, DataStruct, DeriveInput, Fields, FieldsNamed, LitStr,
-    Type, TypePath,
+    parse::Parse, Attribute, Data, DataStruct, DeriveInput, Fields,
+    FieldsNamed, Type, TypePath,
 };
 
 #[derive(Clone)]
@@ -20,10 +20,10 @@ pub trait HelpersTrait {
     fn new_ident(prefix: &str, field_name: Ident) -> Ident;
     fn new_ident_camel_case(prefix: &str, field_name: Ident) -> Ident;
     fn get_type_path(ty: &Type) -> Result<&TypePath, &str>;
-    fn get_attr(
+    fn get_attr<T: Parse>(
         attributes: Vec<Attribute>,
         name: &str,
-    ) -> Result<LitStr, String>;
+    ) -> Result<T, String>;
 }
 
 impl HelpersTrait for Helpers {
@@ -77,10 +77,10 @@ impl HelpersTrait for Helpers {
             field_name.span(),
         )
     }
-    fn get_attr(
+    fn get_attr<T: Parse>(
         attributes: Vec<Attribute>,
         name: &str,
-    ) -> Result<LitStr, String> {
+    ) -> Result<T, String> {
         match attributes.iter().find(|attr| attr.path().is_ident(name)) {
             Some(attr) => Ok(attr.parse_args().unwrap()),
             None => Err(format!("Attribute {} not found", name)),
