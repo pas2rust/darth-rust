@@ -44,7 +44,7 @@ pub fn generate_build_method(helpers: Helpers) -> proc_macro2::TokenStream {
         let min = Helpers::get_attr::<LitInt>(attributes.clone(), "min");
         match min {
             Ok(min) => quote! {
-                if self.#field_name <= #min.into() {
+                if self.#field_name < #min.into() {
                     return Err(
                         format!("Field {}: {} does not match #[min({})]",
                             stringify!(#field_name),
@@ -64,7 +64,7 @@ pub fn generate_build_method(helpers: Helpers) -> proc_macro2::TokenStream {
         let max = Helpers::get_attr::<LitInt>(attributes.clone(), "max");
         match max {
             Ok(max) => quote! {
-                if self.#field_name >= #max.into() {
+                if self.#field_name > #max.into() {
                     return Err(
                         format!("Field {}: {} does not match #[max({})]",
                             stringify!(#field_name),
