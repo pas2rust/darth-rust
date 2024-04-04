@@ -17,7 +17,7 @@ pub fn generate_printers_err_by_field(
                     use colorful::{Color, Colorful};
                     let message = format!(
                         "({}) @ERR '{}' {}.{} = {:#?}",
-                        chrono::Utc::now(),
+                        chrono::Local::now(),
                         custom,
                         stringify!(#struct_name),
                         stringify!(#field_name),

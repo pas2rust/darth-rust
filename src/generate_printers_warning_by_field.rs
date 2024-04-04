@@ -18,7 +18,7 @@ pub fn generate_printers_warning_by_field(
 
                     let message = format!(
                         "({}) @WARNING '{}' {}.{} = {:#?}",
-                        chrono::Utc::now(),
+                        chrono::Local::now(),
                         custom,
                         stringify!(#struct_name),
                         stringify!(#field_name),

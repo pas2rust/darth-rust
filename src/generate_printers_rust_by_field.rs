@@ -17,7 +17,7 @@ pub fn generate_printers_rust_by_field(
                     use colorful::{Color, Colorful};
                     let message = format!(
                         "({}) @RUST '{}' {}.{} = {:#?}",
-                        chrono::Utc::now(),
+                        chrono::Local::now(),
                         custom,
                         stringify!(#struct_name),
                         stringify!(#field_name),

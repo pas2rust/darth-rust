@@ -9,6 +9,7 @@ pub struct User {
     pub name: String,
     #[pattern(r"^[a-zA-Z]{6,20}")]
     pub password: String,
+    #[pattern(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]
     pub email: String,
     #[min(18)]
     #[max(30)]

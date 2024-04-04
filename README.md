@@ -22,12 +22,18 @@ use serde::{Deserialize, Serialize};
 
 #[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct User {
-    id: String,
-    name: String,
-    password: String,
-    email: String,
-    age: usize,
-    friends: Vec<User>,
+    #[pattern(r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$")]
+    pub id: String,
+    #[pattern(r"^[a-zA-Z]{3,20}\s[a-zA-Z]{3,20}$")]
+    pub name: String,
+    #[pattern(r"^[a-zA-Z]{6,20}")]
+    pub password: String,
+    #[pattern(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]
+    pub email: String,
+    #[min(18)]
+    #[max(30)]
+    pub age: u8,
+    pub friends: Vec<User>,
 }
 ```
 

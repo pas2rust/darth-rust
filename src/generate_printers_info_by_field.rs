@@ -16,7 +16,7 @@ pub fn generate_printers_info_by_field(
                     use colorful::{Color, Colorful};
                     let message = format!(
                         "({}) @INFO '{}' {}.{} = {:#?}",
-                        chrono::Utc::now(),
+                        chrono::Local::now(),
                         custom,
                         stringify!(#struct_name),
                         stringify!(#field_name),

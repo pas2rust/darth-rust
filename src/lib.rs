@@ -44,7 +44,7 @@ use crates::*;
 #[proc_macro_derive(DarthRust, attributes(pattern, min, max))]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
-    let cache_struct = Structs::gen_cache_struct(input.clone().ident);
+    let cache_struct = Structs::gen_structs(input.clone().ident);
     let build = Build::new(input.clone());
     let struct_name = &input.ident;
     let methods = build.gen();

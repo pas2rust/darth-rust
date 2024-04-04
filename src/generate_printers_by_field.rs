@@ -15,7 +15,7 @@ pub fn generate_printers_by_field(
                 pub fn #method_name(&self, custom: &str) {
                     let message = format!(
                         "({}) @PRINT '{}' {}.{} = {:#?}",
-                        chrono::Utc::now(),
+                        chrono::Local::now(),
                         custom,
                         stringify!(#struct_name),
                         stringify!(#field_name),
