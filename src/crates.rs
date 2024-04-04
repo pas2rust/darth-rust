@@ -4,7 +4,6 @@ pub use crate::{
     generate_default_method::generate_default_method,
     generate_from_json_method::generate_from_json_method,
     generate_getters::generate_getters,
-    generate_hash_cache_sync::generate_hash_cache_sync,
     generate_math_methods::generate_math_methods,
     generate_mut_getters::generate_mut_getters,
     generate_printers::generate_printers,
@@ -20,8 +19,6 @@ pub use crate::{
     generate_to_rc_method::generate_to_rc_method,
     generate_to_rc_weak_method::generate_to_rc_weak_method,
     generate_to_ref_cell_method::generate_to_ref_cell_method,
-    generate_vec_cache_sync::generate_vec_cache_sync,
-    structs::{Structs, StructsTrait},
 };
 pub use proc_macro::TokenStream;
 pub use quote::quote;

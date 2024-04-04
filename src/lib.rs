@@ -4,7 +4,6 @@ mod generate_build_method;
 mod generate_default_method;
 mod generate_from_json_method;
 mod generate_getters;
-mod generate_hash_cache_sync;
 mod generate_math_methods;
 mod generate_mut_getters;
 mod generate_printers;
@@ -20,9 +19,7 @@ mod generate_to_json_method;
 mod generate_to_rc_method;
 mod generate_to_rc_weak_method;
 mod generate_to_ref_cell_method;
-mod generate_vec_cache_sync;
 mod helpers;
-mod structs;
 
 use crates::*;
 
@@ -44,12 +41,10 @@ use crates::*;
 #[proc_macro_derive(DarthRust, attributes(pattern, min, max))]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
-    let cache_struct = Structs::gen_structs(input.clone().ident);
     let build = Build::new(input.clone());
     let struct_name = &input.ident;
     let methods = build.gen();
     let expanded = quote! {
-        #cache_struct
         impl #struct_name {
             #methods
         }
