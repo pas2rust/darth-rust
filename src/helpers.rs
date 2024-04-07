@@ -71,10 +71,19 @@ impl HelpersTrait for Helpers {
                 if let Type::Path(type_path) = &*type_reference.elem {
                     Ok(type_path)
                 } else {
-                    Err("Type is not a path")
+                    Err("Expected a Type::Path within the Type::Reference")
                 }
             }
-            _ => Err("Type is not a path"),
+            Type::Paren(type_paren) => {
+                if let Type::Path(type_path) = &*type_paren.elem {
+                    Ok(type_path)
+                } else {
+                    Err("Expected a Type::Path within the Type::Paren")
+                }
+            }
+            _ => Err("The provided type is not a Type::Path, Type::Reference \
+                      containing a Type::Path, or Type::Paren containing a \
+                      Type::Path"),
         }
     }
     fn new_ident(prefix: &str, field_name: Ident) -> Ident {

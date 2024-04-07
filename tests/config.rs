@@ -1,3 +1,4 @@
+use chrono::{DateTime, Local};
 use darth_rust::DarthRust;
 use serde::{Deserialize, Serialize};
 
@@ -26,4 +27,11 @@ pub struct CalcStruct {
     pub i128: i128,
     pub f64: f64,
     pub f32: f32,
+}
+
+#[derive(DarthRust, Debug)]
+pub struct Test<T, A> {
+    pub item: T,
+    pub a: A,
+    pub date: DateTime<Local>
 }
