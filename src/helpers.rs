@@ -81,9 +81,17 @@ impl HelpersTrait for Helpers {
                     Err("Expected a Type::Path within the Type::Paren")
                 }
             }
+            Type::Tuple(type_tuple) => {
+                for elem in &type_tuple.elems {
+                    if let Type::Path(type_path) = elem {
+                        return Ok(type_path);
+                    }
+                }
+                Err("No Type::Path found within the Type::Tuple")
+            }
             _ => Err("The provided type is not a Type::Path, Type::Reference \
                       containing a Type::Path, or Type::Paren containing a \
-                      Type::Path"),
+                      Type::Path, or Type::Tuple"),
         }
     }
     fn new_ident(prefix: &str, field_name: Ident) -> Ident {

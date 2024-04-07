@@ -33,5 +33,6 @@ pub struct CalcStruct {
 pub struct Test<T, A> {
     pub item: T,
     pub a: A,
-    pub date: DateTime<Local>
+    pub date: DateTime<Local>,
+    pub tuple: (String, usize),
 }
