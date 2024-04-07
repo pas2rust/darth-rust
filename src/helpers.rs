@@ -1,7 +1,8 @@
 use proc_macro2::Ident;
 use syn::{
-    parse::Parse, Attribute, Data, DataStruct, DeriveInput, Fields,
-    FieldsNamed, Type, TypePath,
+    parse::Parse, parse_quote, Attribute, Data, DataStruct, DeriveInput,
+    Fields, FieldsNamed, GenericParam, ImplGenerics, Type, TypeGenerics,
+    TypePath, WhereClause,
 };
 
 #[derive(Clone)]
@@ -24,6 +25,10 @@ pub trait HelpersTrait {
         attributes: Vec<Attribute>,
         name: &str,
     ) -> Result<T, String>;
+    fn add_traits_to_generics(&mut self);
+    fn generics_split_for_impl(
+        &self,
+    ) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>);
 }
 
 impl HelpersTrait for Helpers {
@@ -62,6 +67,13 @@ impl HelpersTrait for Helpers {
     fn get_type_path(ty: &Type) -> Result<&TypePath, &str> {
         match ty {
             Type::Path(type_path) => Ok(type_path),
+            Type::Reference(type_reference) => {
+                if let Type::Path(type_path) = &*type_reference.elem {
+                    Ok(type_path)
+                } else {
+                    Err("Type is not a path")
+                }
+            }
             _ => Err("Type is not a path"),
         }
     }
@@ -85,5 +97,26 @@ impl HelpersTrait for Helpers {
             Some(attr) => Ok(attr.parse_args().unwrap()),
             None => Err(format!("Attribute {} not found", name)),
         }
+    }
+    fn add_traits_to_generics(&mut self) {
+        if let Some(ref mut input) = self.input {
+            for param in input.generics.params.iter_mut() {
+                if let GenericParam::Type(ref mut type_param) = *param {
+                    type_param
+                        .bounds
+                        .push(parse_quote!(::std::default::Default));
+                    type_param.bounds.push(parse_quote!(::std::fmt::Debug));
+                    type_param.bounds.push(parse_quote!(::serde::Serialize));
+                    type_param
+                        .bounds
+                        .push(parse_quote!(for<'de> ::serde::Deserialize<'de>));
+                }
+            }
+        }
+    }
+    fn generics_split_for_impl(
+        &self,
+    ) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>) {
+        self.input.as_ref().unwrap().generics.split_for_impl()
     }
 }

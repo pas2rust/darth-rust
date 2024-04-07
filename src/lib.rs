@@ -22,6 +22,7 @@ mod generate_to_ref_cell_method;
 mod helpers;
 
 use crates::*;
+use helpers::{Helpers, HelpersTrait};
 
 /// # Usage
 /// ### run `cargo add regex`
@@ -42,10 +43,14 @@ use crates::*;
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let build = Build::new(input.clone());
+    let mut helpers = Helpers::new().input(input.clone());
+    helpers.add_traits_to_generics();
+    let (impl_generics, ty_generics, where_clause) =
+        helpers.generics_split_for_impl();
     let struct_name = &input.ident;
     let methods = build.gen();
     let expanded = quote! {
-        impl #struct_name {
+        impl #impl_generics #struct_name #ty_generics #where_clause {
             #methods
         }
     };

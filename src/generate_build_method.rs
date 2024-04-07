@@ -9,7 +9,7 @@ pub fn generate_build_method(helpers: Helpers) -> proc_macro2::TokenStream {
         let field_name = field.ident.as_ref().unwrap();
         let field_type = &field.ty;
         quote! {
-            pub fn #field_name<T: Into<#field_type>>(mut self, new: T) -> Self {
+            pub fn #field_name<Darth: Into<#field_type>>(mut self, new: Darth) -> Self {
                 self.#field_name = new.into();
                 self
             }

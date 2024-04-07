@@ -16,7 +16,7 @@ pub fn generate_setters(helpers: Helpers) -> proc_macro2::TokenStream {
                 /// # Arguments
                 ///
                 /// - `new`: A value of type that can be converted into `{field_name}`'s type.
-                pub fn #method_name<T: Into<#field_type>>(&mut self, new: T) {
+                pub fn #method_name<Darth: Into<#field_type>>(&mut self, new: Darth) {
                     self.#field_name = new.into();
                 }
             }
