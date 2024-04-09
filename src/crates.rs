@@ -42,9 +42,10 @@ pub use crate::generate_printers_warning_by_field::generate_printers_warning_by_
 #[cfg(feature = "set")]
 pub use crate::generate_setters::generate_setters;
 
-pub use crate::generate_to_box_method::generate_to_box_method;
 #[cfg(feature = "json")]
 pub use crate::generate_to_json_method::generate_to_json_method;
+
+pub use crate::generate_to_box_method::generate_to_box_method;
 
 pub use crate::generate_to_rc_method::generate_to_rc_method;
 
