@@ -1,6 +1,7 @@
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 
+#[cfg(feature = "print_by_field")]
 pub fn generate_printers_info_by_field(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {

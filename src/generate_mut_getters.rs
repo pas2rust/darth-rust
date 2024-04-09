@@ -1,6 +1,7 @@
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 
+#[cfg(feature = "get_mut")]
 pub fn generate_mut_getters(helpers: Helpers) -> proc_macro2::TokenStream {
     let methods =
         helpers.get_named_fields().unwrap().named.iter().map(|field| {

@@ -2,6 +2,7 @@ use quote::quote;
 
 use crate::helpers::{Helpers, HelpersTrait};
 
+#[cfg(feature = "set")]
 pub fn generate_setters(helpers: Helpers) -> proc_macro2::TokenStream {
     let methods =
         helpers.get_named_fields().unwrap().named.iter().map(|field| {

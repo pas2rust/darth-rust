@@ -1,5 +1,5 @@
 use quote::quote;
-/// printter
+#[cfg(feature = "print")]
 pub fn generate_printers() -> proc_macro2::TokenStream {
     quote! {
         /// Print the struct with various labels and color-coded output.
