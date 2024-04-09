@@ -1,8 +1,6 @@
+#![cfg(feature = "set")]
 use quote::quote;
-
 use crate::helpers::{Helpers, HelpersTrait};
-
-#[cfg(feature = "set")]
 pub fn generate_setters(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {

@@ -1,3 +1,4 @@
+#![cfg(feature = "build")]
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 

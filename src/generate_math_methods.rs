@@ -1,7 +1,6 @@
+#![cfg(feature = "math")]
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
-
-#[cfg(feature = "math")]
 pub fn generate_math_methods(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {

@@ -1,8 +1,7 @@
+#![cfg(feature = "print_by_field")]
 use quote::quote;
-
 use crate::helpers::{Helpers, HelpersTrait};
 
-#[cfg(feature = "print_by_field")]
 pub fn generate_printers_rust_by_field(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {

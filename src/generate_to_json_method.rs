@@ -1,3 +1,4 @@
+#![cfg(feature = "json")]
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 

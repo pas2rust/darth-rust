@@ -1,8 +1,7 @@
+#![cfg(feature = "build")]
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 use syn::{LitInt, LitStr};
-
-#[cfg(feature = "build")]
 pub fn generate_build_method(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {
