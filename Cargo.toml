@@ -35,3 +35,14 @@ syn = {version = "^2.0.38", features = ["full"]}
 [lib]
 proc-macro = true
 path = "src/lib.rs"
+
+[features]
+default = ["build", "json", "math", "print_by_field", "get", "get_mut", "print", "set"]
+build = []
+json = []
+math = []
+get = []
+get_mut = []
+print_by_field = []
+print = []
+set = []

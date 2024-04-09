@@ -1,7 +1,6 @@
+use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 use syn::{LitInt, LitStr};
-
-use crate::helpers::{Helpers, HelpersTrait};
 
 pub fn generate_build_method(helpers: Helpers) -> proc_macro2::TokenStream {
     let iter = helpers.get_named_fields().unwrap().named.iter();
