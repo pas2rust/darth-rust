@@ -1,60 +1,7 @@
+use crate::crates::*;
+use crate::helpers::{Helpers, HelpersTrait};
 use proc_macro2::TokenStream;
 use syn::DeriveInput;
-
-#[cfg(feature = "build")]
-use crate::generate_build_method;
-
-#[cfg(feature = "build")]
-use crate::generate_default_method;
-
-#[cfg(feature = "json")]
-use crate::generate_from_json_method;
-
-#[cfg(feature = "get")]
-use crate::generate_getters;
-
-#[cfg(feature = "math")]
-use crate::generate_math_methods;
-
-#[cfg(feature = "get_mut")]
-use crate::generate_mut_getters;
-
-#[cfg(feature = "print")]
-use crate::generate_printers;
-
-#[cfg(feature = "print_by_field")]
-use crate::generate_printers_by_field;
-
-#[cfg(feature = "print_by_field")]
-use crate::generate_printers_err_by_field;
-
-#[cfg(feature = "print_by_field")]
-use crate::generate_printers_info_by_field;
-
-#[cfg(feature = "print_by_field")]
-use crate::generate_printers_rust_by_field;
-
-#[cfg(feature = "print_by_field")]
-use crate::generate_printers_success_by_field;
-
-#[cfg(feature = "print_by_field")]
-use crate::generate_printers_warning_by_field;
-
-#[cfg(feature = "set")]
-use crate::generate_setters;
-
-use crate::generate_to_box_method;
-
-#[cfg(feature = "json")]
-use crate::generate_to_json_method;
-
-use crate::generate_to_rc_method;
-
-use crate::generate_to_rc_weak_method;
-
-use crate::generate_to_ref_cell_method;
-
-use crate::helpers::{Helpers, HelpersTrait};
 
 pub struct Build {
     pub derive_input: DeriveInput,
