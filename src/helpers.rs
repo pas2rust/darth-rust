@@ -1,8 +1,9 @@
 use proc_macro2::Ident;
 use syn::{
-    parse::Parse, parse_quote, Attribute, Data, DataStruct, DeriveInput,
-    Fields, FieldsNamed, GenericParam, ImplGenerics, Type, TypeGenerics,
-    TypePath, WhereClause,
+    parse::Parse, parse_quote, Attribute, Data, DataStruct,
+    DeriveInput, Fields, FieldsNamed, GenericParam,
+    ImplGenerics, Type, TypeGenerics, TypePath,
+    WhereClause,
 };
 
 #[derive(Clone)]
@@ -12,14 +13,19 @@ pub struct Helpers {
 }
 
 pub trait HelpersTrait {
-    fn get_named_fields(&self) -> Result<&FieldsNamed, &str>;
+    fn get_named_fields(
+        &self,
+    ) -> Result<&FieldsNamed, &str>;
     fn get_data_struct(&self) -> Result<&DataStruct, &str>;
     fn get_fields(&self) -> Result<&Fields, &str>;
     fn new() -> Self;
     fn input(self, new: DeriveInput) -> Self;
     fn cache_name(self, new: Ident) -> Self;
     fn new_ident(prefix: &str, field_name: Ident) -> Ident;
-    fn new_ident_camel_case(prefix: &str, field_name: Ident) -> Ident;
+    fn new_ident_camel_case(
+        prefix: &str,
+        field_name: Ident,
+    ) -> Ident;
     fn get_type_path(ty: &Type) -> Result<&TypePath, &str>;
     fn get_attr<T: Parse>(
         attributes: Vec<Attribute>,
@@ -28,7 +34,11 @@ pub trait HelpersTrait {
     fn add_traits_to_generics(&mut self);
     fn generics_split_for_impl(
         &self,
-    ) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>);
+    ) -> (
+        ImplGenerics<'_>,
+        TypeGenerics<'_>,
+        Option<&WhereClause>,
+    );
 }
 
 impl HelpersTrait for Helpers {
@@ -43,19 +53,29 @@ impl HelpersTrait for Helpers {
         self.cache_name = new.into();
         self
     }
-    fn get_named_fields(&self) -> Result<&FieldsNamed, &str> {
+    fn get_named_fields(
+        &self,
+    ) -> Result<&FieldsNamed, &str> {
         match &self.input.as_ref().unwrap().data {
-            Data::Struct(data_struct) => match &data_struct.fields {
-                Fields::Named(named_fields) => Ok(named_fields),
-                _ => Err("Fields are not named"),
-            },
+            Data::Struct(data_struct) => {
+                match &data_struct.fields {
+                    Fields::Named(named_fields) => {
+                        Ok(named_fields)
+                    }
+                    _ => Err("Fields are not named"),
+                }
+            }
             _ => Err("Data is not a struct"),
         }
     }
     fn get_fields(&self) -> Result<&Fields, &str> {
         match &self.input.as_ref().unwrap().data {
-            Data::Struct(data_struct) => Ok(&data_struct.fields),
-            _ => Err("from_json can only be derived for structs"),
+            Data::Struct(data_struct) => {
+                Ok(&data_struct.fields)
+            }
+            _ => Err(
+                "from_json can only be derived for structs",
+            ),
         }
     }
     fn get_data_struct(&self) -> Result<&DataStruct, &str> {
@@ -100,7 +120,10 @@ impl HelpersTrait for Helpers {
             field_name.span(),
         )
     }
-    fn new_ident_camel_case(prefix: &str, field_name: Ident) -> Ident {
+    fn new_ident_camel_case(
+        prefix: &str,
+        field_name: Ident,
+    ) -> Ident {
         Ident::new(
             format!("{}{}", prefix, field_name).as_str(),
             field_name.span(),
@@ -110,30 +133,50 @@ impl HelpersTrait for Helpers {
         attributes: Vec<Attribute>,
         name: &str,
     ) -> Result<T, String> {
-        match attributes.iter().find(|attr| attr.path().is_ident(name)) {
+        match attributes
+            .iter()
+            .find(|attr| attr.path().is_ident(name))
+        {
             Some(attr) => Ok(attr.parse_args().unwrap()),
-            None => Err(format!("Attribute {} not found", name)),
+            None => {
+                Err(format!("Attribute {} not found", name))
+            }
         }
     }
     fn add_traits_to_generics(&mut self) {
         if let Some(ref mut input) = self.input {
             for param in input.generics.params.iter_mut() {
-                if let GenericParam::Type(ref mut type_param) = *param {
-                    type_param
-                        .bounds
-                        .push(parse_quote!(::std::default::Default));
-                    type_param.bounds.push(parse_quote!(::std::fmt::Debug));
-                    type_param.bounds.push(parse_quote!(::serde::Serialize));
-                    type_param
-                        .bounds
-                        .push(parse_quote!(for<'de> ::serde::Deserialize<'de>));
+                if let GenericParam::Type(
+                    ref mut type_param,
+                ) = *param
+                {
+                    type_param.bounds.push(parse_quote!(
+                        ::std::default::Default
+                    ));
+                    type_param.bounds.push(parse_quote!(
+                        ::std::fmt::Debug
+                    ));
+                    type_param.bounds.push(parse_quote!(
+                        ::serde::Serialize
+                    ));
+                    type_param.bounds.push(parse_quote!(
+                        for<'de> ::serde::Deserialize<'de>
+                    ));
                 }
             }
         }
     }
     fn generics_split_for_impl(
         &self,
-    ) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>) {
-        self.input.as_ref().unwrap().generics.split_for_impl()
+    ) -> (
+        ImplGenerics<'_>,
+        TypeGenerics<'_>,
+        Option<&WhereClause>,
+    ) {
+        self.input
+            .as_ref()
+            .unwrap()
+            .generics
+            .split_for_impl()
     }
 }

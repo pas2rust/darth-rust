@@ -2,7 +2,9 @@ use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 
 #[cfg(feature = "math")]
-pub fn generate_math_methods(helpers: Helpers) -> proc_macro2::TokenStream {
+pub fn generate_math_methods(
+    helpers: Helpers,
+) -> proc_macro2::TokenStream {
     let methods = helpers.get_named_fields().unwrap()
     .named.iter().filter_map(|field| {
         let field_name = field.ident.as_ref().unwrap();

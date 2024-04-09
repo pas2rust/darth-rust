@@ -2,8 +2,11 @@ use quote::quote;
 
 use crate::helpers::{Helpers, HelpersTrait};
 
-pub fn generate_from_json_method(helpers: Helpers) -> proc_macro2::TokenStream {
-    let struct_name = &helpers.input.as_ref().unwrap().ident;
+pub fn generate_from_json_method(
+    helpers: Helpers,
+) -> proc_macro2::TokenStream {
+    let struct_name =
+        &helpers.input.as_ref().unwrap().ident;
     let from_json_code = {
         let field_deserialization = helpers.get_fields().unwrap()
         .iter().map(|field| {

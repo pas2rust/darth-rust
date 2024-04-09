@@ -23,7 +23,8 @@ pub fn formatters() {
         "age": *user_new.get_age(),
         "friends": *user_new.get_friends(),
     });
-    let user_from_json = User::from_json(user_json_value.clone()).unwrap();
+    let user_from_json =
+        User::from_json(user_json_value.clone()).unwrap();
     user_new.print_err("");
     assert_eq!(user_new, user_from_json);
     assert_eq!(user_json_value, user_expected_json);

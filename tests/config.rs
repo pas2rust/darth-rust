@@ -2,7 +2,14 @@ use chrono::{DateTime, Local};
 use darth_rust::DarthRust;
 use serde::{Deserialize, Serialize};
 
-#[derive(DarthRust, Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[derive(
+    DarthRust,
+    Debug,
+    Serialize,
+    Deserialize,
+    PartialEq,
+    Clone,
+)]
 pub struct User {
     pub id: String,
     pub name: String,

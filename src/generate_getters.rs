@@ -2,12 +2,21 @@ use quote::quote;
 
 use crate::helpers::{Helpers, HelpersTrait};
 
-pub fn generate_getters(helpers: Helpers) -> proc_macro2::TokenStream {
-    let methods =
-        helpers.get_named_fields().unwrap().named.iter().map(|field| {
+pub fn generate_getters(
+    helpers: Helpers,
+) -> proc_macro2::TokenStream {
+    let methods = helpers
+        .get_named_fields()
+        .unwrap()
+        .named
+        .iter()
+        .map(|field| {
             let field_name = field.ident.as_ref().unwrap();
             let field_type = &field.ty;
-            let method_name = Helpers::new_ident("get", field_name.clone());
+            let method_name = Helpers::new_ident(
+                "get",
+                field_name.clone(),
+            );
             quote! {
                 /// Get an immutable reference to the `{field_name}` field of the struct.
                 ///
