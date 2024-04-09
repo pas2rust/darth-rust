@@ -1,6 +1,6 @@
 #![cfg(feature = "json")]
-use quote::quote;
 use crate::helpers::{Helpers, HelpersTrait};
+use quote::quote;
 
 pub fn generate_from_json_method(
     helpers: Helpers,

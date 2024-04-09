@@ -1,6 +1,6 @@
 #![cfg(feature = "print_by_field")]
-use quote::quote;
 use crate::helpers::{Helpers, HelpersTrait};
+use quote::quote;
 
 pub fn generate_printers_rust_by_field(
     helpers: Helpers,

@@ -1,6 +1,6 @@
 #![cfg(feature = "get")]
-use quote::quote;
 use crate::helpers::{Helpers, HelpersTrait};
+use quote::quote;
 
 pub fn generate_getters(
     helpers: Helpers,
