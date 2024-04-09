@@ -1,3 +1,4 @@
+#![cfg(all(feature = "build", feature = "json"))]
 mod config;
 pub use config::User;
 use serde_json::json;
@@ -25,7 +26,6 @@ pub fn formatters() {
     });
     let user_from_json =
         User::from_json(user_json_value.clone()).unwrap();
-    user_new.print_err("");
     assert_eq!(user_new, user_from_json);
     assert_eq!(user_json_value, user_expected_json);
 }

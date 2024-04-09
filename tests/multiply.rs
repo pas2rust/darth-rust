@@ -1,3 +1,4 @@
+#![cfg(all(feature = "build", feature = "math"))]
 mod config;
 pub use config::CalcStruct;
 
@@ -20,7 +21,6 @@ fn test_multiply_usize() {
         .build()
         .unwrap();
     calc_struct.multiply_usize(5);
-    calc_struct.print_err_usize("");
     assert_eq!(calc_struct.usize, 5);
 }
 
@@ -43,7 +43,6 @@ fn test_multiply_u8() {
         .build()
         .unwrap();
     calc_struct.multiply_u8(5);
-    calc_struct.print_err_u8("");
     assert_eq!(calc_struct.u8, 10);
 }
 
@@ -66,7 +65,6 @@ fn test_multiply_u16() {
         .build()
         .unwrap();
     calc_struct.multiply_u16(5);
-    calc_struct.print_err_u16("");
     assert_eq!(calc_struct.u16, 15);
 }
 
@@ -89,7 +87,6 @@ fn test_multiply_u32() {
         .build()
         .unwrap();
     calc_struct.multiply_u32(5);
-    calc_struct.print_err_u32("");
     assert_eq!(calc_struct.u32, 20);
 }
 
@@ -112,7 +109,6 @@ fn test_multiply_u64() {
         .build()
         .unwrap();
     calc_struct.multiply_u64(5);
-    calc_struct.print_err_u64("");
     assert_eq!(calc_struct.u64, 25);
 }
 
@@ -135,7 +131,6 @@ fn test_multiply_u128() {
         .build()
         .unwrap();
     calc_struct.multiply_u128(5);
-    calc_struct.print_err_u128("");
     assert_eq!(calc_struct.u128, 30);
 }
 
@@ -158,7 +153,6 @@ fn test_multiply_isize() {
         .build()
         .unwrap();
     calc_struct.multiply_isize(5);
-    calc_struct.print_err_isize("");
     assert_eq!(calc_struct.isize, 35);
 }
 
@@ -181,7 +175,6 @@ fn test_multiply_i16() {
         .build()
         .unwrap();
     calc_struct.multiply_i16(5);
-    calc_struct.print_err_i16("");
     assert_eq!(calc_struct.i16, 40);
 }
 
@@ -204,7 +197,6 @@ fn test_multiply_i32() {
         .build()
         .unwrap();
     calc_struct.multiply_i32(5);
-    calc_struct.print_err_i32("");
     assert_eq!(calc_struct.i32, 45);
 }
 
@@ -227,7 +219,6 @@ fn test_multiply_i64() {
         .build()
         .unwrap();
     calc_struct.multiply_i64(5);
-    calc_struct.print_err_i64("");
     assert_eq!(calc_struct.i64, 50);
 }
 
@@ -250,7 +241,6 @@ fn test_multiply_i128() {
         .build()
         .unwrap();
     calc_struct.multiply_i128(5);
-    calc_struct.print_err_i128("");
     assert_eq!(calc_struct.i128, 55);
 }
 
@@ -273,7 +263,6 @@ fn test_multiply_f64() {
         .build()
         .unwrap();
     calc_struct.multiply_f64(5.0);
-    calc_struct.print_err_f64("");
     assert_eq!(calc_struct.f64, 60.0);
 }
 
@@ -296,6 +285,5 @@ fn test_multiply_f32() {
         .build()
         .unwrap();
     calc_struct.multiply_f32(5.0);
-    calc_struct.print_err_f32("");
     assert_eq!(calc_struct.f32, 65.0);
 }

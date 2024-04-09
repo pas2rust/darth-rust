@@ -1,3 +1,4 @@
+#![cfg(feature = "build")]
 use darth_rust::DarthRust;
 use serde::{Deserialize, Serialize};
 

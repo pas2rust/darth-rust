@@ -1,3 +1,4 @@
+#![cfg(all(feature = "build", feature = "math"))]
 mod config;
 pub use config::CalcStruct;
 
@@ -20,7 +21,6 @@ fn test_sum_usize() {
         .build()
         .unwrap();
     calc_struct.sum_usize(5);
-    calc_struct.print_err_usize("");
     assert_eq!(calc_struct.usize, 6);
 }
 
@@ -43,7 +43,6 @@ fn test_sum_u8() {
         .build()
         .unwrap();
     calc_struct.sum_u8(5);
-    calc_struct.print_err_u8("");
     assert_eq!(calc_struct.u8, 7);
 }
 
@@ -66,7 +65,7 @@ fn test_sum_u16() {
         .build()
         .unwrap();
     calc_struct.sum_u16(5);
-    calc_struct.print_err_u16("");
+
     assert_eq!(calc_struct.u16, 8);
 }
 
@@ -89,7 +88,7 @@ fn test_sum_u32() {
         .build()
         .unwrap();
     calc_struct.sum_u32(5);
-    calc_struct.print_err_u32("");
+
     assert_eq!(calc_struct.u32, 9);
 }
 
@@ -112,7 +111,7 @@ fn test_sum_u64() {
         .build()
         .unwrap();
     calc_struct.sum_u64(5);
-    calc_struct.print_err_u64("");
+
     assert_eq!(calc_struct.u64, 10);
 }
 
@@ -135,7 +134,6 @@ fn test_sum_u128() {
         .build()
         .unwrap();
     calc_struct.sum_u128(5);
-    calc_struct.print_err_u128("");
     assert_eq!(calc_struct.u128, 11);
 }
 
@@ -158,7 +156,6 @@ fn test_sum_isize() {
         .build()
         .unwrap();
     calc_struct.sum_isize(5);
-    calc_struct.print_err_isize("");
     assert_eq!(calc_struct.isize, 12);
 }
 
@@ -181,7 +178,7 @@ fn test_sum_i16() {
         .build()
         .unwrap();
     calc_struct.sum_i16(5);
-    calc_struct.print_err_i16("");
+
     assert_eq!(calc_struct.i16, 13);
 }
 
@@ -204,7 +201,7 @@ fn test_sum_i32() {
         .build()
         .unwrap();
     calc_struct.sum_i32(5);
-    calc_struct.print_err_i32("");
+
     assert_eq!(calc_struct.i32, 14);
 }
 
@@ -227,7 +224,7 @@ fn test_sum_i64() {
         .build()
         .unwrap();
     calc_struct.sum_i64(5);
-    calc_struct.print_err_i64("");
+
     assert_eq!(calc_struct.i64, 15);
 }
 
@@ -250,7 +247,6 @@ fn test_sum_i128() {
         .build()
         .unwrap();
     calc_struct.sum_i128(5);
-    calc_struct.print_err_i128("");
     assert_eq!(calc_struct.i128, 16);
 }
 
@@ -273,7 +269,7 @@ fn test_sum_f64() {
         .build()
         .unwrap();
     calc_struct.sum_f64(5.0);
-    calc_struct.print_err_f64("");
+
     assert_eq!(calc_struct.f64, 17.0);
 }
 
@@ -296,6 +292,6 @@ fn test_sum_f32() {
         .build()
         .unwrap();
     calc_struct.sum_f32(5.0);
-    calc_struct.print_err_f32("");
+
     assert_eq!(calc_struct.f32, 18.0);
 }
