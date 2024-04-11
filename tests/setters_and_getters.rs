@@ -27,7 +27,7 @@ pub struct User {
 }
 
 #[test]
-pub fn test_setters() {
+pub fn setters() {
     let friends = vec![User::default(); 10];
     let mut user_new = User::new()
         .id("id")
@@ -52,7 +52,7 @@ pub fn test_setters() {
 }
 
 #[test]
-pub fn test_getters_mut() {
+pub fn getters_mut() {
     let friends = vec![User::default(); 10];
     let mut user_new = User::new()
         .id("id")
@@ -77,7 +77,7 @@ pub fn test_getters_mut() {
     assert_eq!(*user_new.get_name(), "mutname");
 }
 #[test]
-pub fn test_getters_mut_setters() {
+pub fn getters_mut_setters() {
     let friends = vec![User::default(); 10];
     let mut user_new = User::new()
         .id("id")

@@ -18,7 +18,7 @@ pub struct CalcStruct {
     pub f32: f32,
 }
 #[test]
-fn test_divide_usize() {
+fn divide_usize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -41,7 +41,7 @@ fn test_divide_usize() {
 }
 
 #[test]
-fn test_divide_u8() {
+fn divide_u8() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -63,7 +63,7 @@ fn test_divide_u8() {
 }
 
 #[test]
-fn test_divide_u16() {
+fn divide_u16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -85,7 +85,7 @@ fn test_divide_u16() {
 }
 
 #[test]
-fn test_divide_u32() {
+fn divide_u32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -107,7 +107,7 @@ fn test_divide_u32() {
 }
 
 #[test]
-fn test_divide_u64() {
+fn divide_u64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -129,7 +129,7 @@ fn test_divide_u64() {
 }
 
 #[test]
-fn test_divide_u128() {
+fn divide_u128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -151,7 +151,7 @@ fn test_divide_u128() {
 }
 
 #[test]
-fn test_divide_isize() {
+fn divide_isize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -174,7 +174,7 @@ fn test_divide_isize() {
 }
 
 #[test]
-fn test_divide_i16() {
+fn divide_i16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -196,7 +196,7 @@ fn test_divide_i16() {
 }
 
 #[test]
-fn test_divide_i32() {
+fn divide_i32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -218,7 +218,7 @@ fn test_divide_i32() {
 }
 
 #[test]
-fn test_divide_i64() {
+fn divide_i64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -240,7 +240,7 @@ fn test_divide_i64() {
 }
 
 #[test]
-fn test_divide_i128() {
+fn divide_i128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -262,7 +262,7 @@ fn test_divide_i128() {
 }
 
 #[test]
-fn test_divide_f64() {
+fn divide_f64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -284,7 +284,7 @@ fn test_divide_f64() {
 }
 
 #[test]
-fn test_divide_f32() {
+fn divide_f32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)

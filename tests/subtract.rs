@@ -18,7 +18,7 @@ pub struct CalcStruct {
     pub f32: f32,
 }
 #[test]
-fn test_subtract_usize() {
+fn subtract_usize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -41,7 +41,7 @@ fn test_subtract_usize() {
 }
 
 #[test]
-fn test_subtract_u8() {
+fn subtract_u8() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -63,7 +63,7 @@ fn test_subtract_u8() {
 }
 
 #[test]
-fn test_subtract_u16() {
+fn subtract_u16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -85,7 +85,7 @@ fn test_subtract_u16() {
 }
 
 #[test]
-fn test_subtract_u32() {
+fn subtract_u32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -107,7 +107,7 @@ fn test_subtract_u32() {
 }
 
 #[test]
-fn test_subtract_u64() {
+fn subtract_u64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -129,7 +129,7 @@ fn test_subtract_u64() {
 }
 
 #[test]
-fn test_subtract_u128() {
+fn subtract_u128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -151,7 +151,7 @@ fn test_subtract_u128() {
 }
 
 #[test]
-fn test_subtract_isize() {
+fn subtract_isize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -174,7 +174,7 @@ fn test_subtract_isize() {
 }
 
 #[test]
-fn test_subtract_i16() {
+fn subtract_i16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -196,7 +196,7 @@ fn test_subtract_i16() {
 }
 
 #[test]
-fn test_subtract_i32() {
+fn subtract_i32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -218,7 +218,7 @@ fn test_subtract_i32() {
 }
 
 #[test]
-fn test_subtract_i64() {
+fn subtract_i64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -240,7 +240,7 @@ fn test_subtract_i64() {
 }
 
 #[test]
-fn test_subtract_i128() {
+fn subtract_i128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -262,7 +262,7 @@ fn test_subtract_i128() {
 }
 
 #[test]
-fn test_subtract_f64() {
+fn subtract_f64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)
@@ -284,7 +284,7 @@ fn test_subtract_f64() {
 }
 
 #[test]
-fn test_subtract_f32() {
+fn subtract_f32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(6)
         .u8::<u8>(7)

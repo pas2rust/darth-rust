@@ -1,6 +1,7 @@
 #![cfg(all(feature = "build", feature = "json"))]
 use darth_rust::DarthRust;
 use serde::{Deserialize, Serialize};
+use serde_json::json;
 
 #[derive(
     DarthRust,
@@ -28,7 +29,7 @@ pub struct User {
 }
 
 #[test]
-fn test_user_builder() {
+fn user_builder() {
     let user = User::new()
         .id("123e4567-e89b-12d3-a456-426614174000")
         .name("John Doe")
@@ -48,4 +49,29 @@ fn test_user_builder() {
     assert_eq!(user.email, "johndoe@example.com");
     assert_eq!(user.age, 30);
     assert_eq!(user.friends, vec![]);
+}
+
+#[test]
+fn json() {
+    let friends = vec![User::default(); 10];
+    let user_new = User::new()
+        .id("id")
+        .name("name")
+        .password("password")
+        .email("email")
+        .age(18)
+        .friends(friends.clone());
+    let user_json_value = user_new.to_json();
+    let user_expected_json = json!({
+        "id": *user_new.get_id(),
+        "name": *user_new.get_name(),
+        "password": *user_new.get_password(),
+        "email": *user_new.get_email(),
+        "age": *user_new.get_age(),
+        "friends": *user_new.get_friends(),
+    });
+    let user_from_json =
+        User::from_json(user_json_value.clone()).unwrap();
+    assert_eq!(user_new, user_from_json);
+    assert_eq!(user_json_value, user_expected_json);
 }

@@ -19,7 +19,7 @@ pub struct CalcStruct {
 }
 
 #[test]
-fn test_multiply_usize() {
+fn multiply_usize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -41,7 +41,7 @@ fn test_multiply_usize() {
 }
 
 #[test]
-fn test_multiply_u8() {
+fn multiply_u8() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -63,7 +63,7 @@ fn test_multiply_u8() {
 }
 
 #[test]
-fn test_multiply_u16() {
+fn multiply_u16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -85,7 +85,7 @@ fn test_multiply_u16() {
 }
 
 #[test]
-fn test_multiply_u32() {
+fn multiply_u32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -107,7 +107,7 @@ fn test_multiply_u32() {
 }
 
 #[test]
-fn test_multiply_u64() {
+fn multiply_u64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -129,7 +129,7 @@ fn test_multiply_u64() {
 }
 
 #[test]
-fn test_multiply_u128() {
+fn multiply_u128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -151,7 +151,7 @@ fn test_multiply_u128() {
 }
 
 #[test]
-fn test_multiply_isize() {
+fn multiply_isize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -173,7 +173,7 @@ fn test_multiply_isize() {
 }
 
 #[test]
-fn test_multiply_i16() {
+fn multiply_i16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -195,7 +195,7 @@ fn test_multiply_i16() {
 }
 
 #[test]
-fn test_multiply_i32() {
+fn multiply_i32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -217,7 +217,7 @@ fn test_multiply_i32() {
 }
 
 #[test]
-fn test_multiply_i64() {
+fn multiply_i64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -239,7 +239,7 @@ fn test_multiply_i64() {
 }
 
 #[test]
-fn test_multiply_i128() {
+fn multiply_i128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -261,7 +261,7 @@ fn test_multiply_i128() {
 }
 
 #[test]
-fn test_multiply_f64() {
+fn multiply_f64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -283,7 +283,7 @@ fn test_multiply_f64() {
 }
 
 #[test]
-fn test_multiply_f32() {
+fn multiply_f32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)

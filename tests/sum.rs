@@ -19,7 +19,7 @@ pub struct CalcStruct {
 }
 
 #[test]
-fn test_sum_usize() {
+fn sum_usize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -41,7 +41,7 @@ fn test_sum_usize() {
 }
 
 #[test]
-fn test_sum_u8() {
+fn sum_u8() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -63,7 +63,7 @@ fn test_sum_u8() {
 }
 
 #[test]
-fn test_sum_u16() {
+fn sum_u16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -86,7 +86,7 @@ fn test_sum_u16() {
 }
 
 #[test]
-fn test_sum_u32() {
+fn sum_u32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -109,7 +109,7 @@ fn test_sum_u32() {
 }
 
 #[test]
-fn test_sum_u64() {
+fn sum_u64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -132,7 +132,7 @@ fn test_sum_u64() {
 }
 
 #[test]
-fn test_sum_u128() {
+fn sum_u128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -154,7 +154,7 @@ fn test_sum_u128() {
 }
 
 #[test]
-fn test_sum_isize() {
+fn sum_isize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -176,7 +176,7 @@ fn test_sum_isize() {
 }
 
 #[test]
-fn test_sum_i16() {
+fn sum_i16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -199,7 +199,7 @@ fn test_sum_i16() {
 }
 
 #[test]
-fn test_sum_i32() {
+fn sum_i32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -222,7 +222,7 @@ fn test_sum_i32() {
 }
 
 #[test]
-fn test_sum_i64() {
+fn sum_i64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -245,7 +245,7 @@ fn test_sum_i64() {
 }
 
 #[test]
-fn test_sum_i128() {
+fn sum_i128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -267,7 +267,7 @@ fn test_sum_i128() {
 }
 
 #[test]
-fn test_sum_f64() {
+fn sum_f64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)
@@ -290,7 +290,7 @@ fn test_sum_f64() {
 }
 
 #[test]
-fn test_sum_f32() {
+fn sum_f32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(1)
         .u8::<u8>(2)

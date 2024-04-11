@@ -18,7 +18,7 @@ pub struct CalcStruct {
     pub f32: f32,
 }
 #[test]
-fn test_inflate_usize() {
+fn inflate_usize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -40,7 +40,7 @@ fn test_inflate_usize() {
 }
 
 #[test]
-fn test_inflate_u8() {
+fn inflate_u8() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -62,7 +62,7 @@ fn test_inflate_u8() {
 }
 
 #[test]
-fn test_inflate_u16() {
+fn inflate_u16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -84,7 +84,7 @@ fn test_inflate_u16() {
 }
 
 #[test]
-fn test_inflate_u32() {
+fn inflate_u32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -106,7 +106,7 @@ fn test_inflate_u32() {
 }
 
 #[test]
-fn test_inflate_u64() {
+fn inflate_u64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -128,7 +128,7 @@ fn test_inflate_u64() {
 }
 
 #[test]
-fn test_inflate_u128() {
+fn inflate_u128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -150,7 +150,7 @@ fn test_inflate_u128() {
 }
 
 #[test]
-fn test_inflate_isize() {
+fn inflate_isize() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -172,7 +172,7 @@ fn test_inflate_isize() {
 }
 
 #[test]
-fn test_inflate_i16() {
+fn inflate_i16() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -194,7 +194,7 @@ fn test_inflate_i16() {
 }
 
 #[test]
-fn test_inflate_i32() {
+fn inflate_i32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -216,7 +216,7 @@ fn test_inflate_i32() {
 }
 
 #[test]
-fn test_inflate_i64() {
+fn inflate_i64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -238,7 +238,7 @@ fn test_inflate_i64() {
 }
 
 #[test]
-fn test_inflate_i128() {
+fn inflate_i128() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -260,7 +260,7 @@ fn test_inflate_i128() {
 }
 
 #[test]
-fn test_inflate_f64() {
+fn inflate_f64() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
@@ -282,7 +282,7 @@ fn test_inflate_f64() {
 }
 
 #[test]
-fn test_inflate_f32() {
+fn inflate_f32() {
     let mut calc_struct = CalcStruct::new()
         .usize::<usize>(10)
         .u8::<u8>(20)
