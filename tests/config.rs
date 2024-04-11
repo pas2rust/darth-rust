@@ -16,6 +16,7 @@ pub struct User {
     pub password: String,
     pub email: String,
     pub age: u8,
+    #[serde(rename = "amigos")]
     pub friends: Vec<User>,
 }
 

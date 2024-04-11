@@ -40,21 +40,6 @@ mod helpers;
 use crates::*;
 use helpers::{Helpers, HelpersTrait};
 
-/// # Usage
-/// ### run `cargo add regex`
-/// ### run `cargo add colorful`
-/// ### run `cargo add chrono`
-/// ### run `cargo add serde`
-/// ### run `cargo add serde_json`
-/// ```rust
-/// use darth_rust::DarthRust;
-/// use serde::{Deserialize, Serialize};
-/// #[derive(DarthRust, Debug, Serialize, Deserialize, Clone, Default)]
-/// struct MyStruct {
-///     field1: String,
-///     field2: i32,
-/// }
-/// ```
 #[proc_macro_derive(
     DarthRust,
     attributes(pattern, min, max)
