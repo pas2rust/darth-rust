@@ -22,12 +22,14 @@ impl BuildTrait for Build {
                 self.derive_input.ident.clone(),
             ));
         let streams = vec![
-            #[cfg(feature = "math")]
-            generate_math_methods(helpers.clone()),
-            #[cfg(feature = "build")]
-            generate_default_method(helpers.clone()),
             #[cfg(feature = "json")]
-            generate_from_json_method(helpers.clone()),
+            generate_to_json(helpers.clone()),
+            #[cfg(feature = "json")]
+            generate_from_json(helpers.clone()),
+            #[cfg(feature = "math")]
+            generate_math(helpers.clone()),
+            #[cfg(feature = "build")]
+            generate_default(helpers.clone()),
             #[cfg(feature = "get")]
             generate_getters(helpers.clone()),
             #[cfg(feature = "get_mut")]
@@ -56,14 +58,12 @@ impl BuildTrait for Build {
             generate_printers(),
             #[cfg(feature = "set")]
             generate_setters(helpers.clone()),
-            #[cfg(feature = "json")]
-            generate_to_json_method(helpers.clone()),
             #[cfg(feature = "build")]
-            generate_build_method(helpers.clone()),
-            generate_to_box_method(),
-            generate_to_rc_method(),
-            generate_to_ref_cell_method(),
-            generate_to_rc_weak_method(),
+            generate_build(helpers.clone()),
+            generate_to_box(),
+            generate_to_rc(),
+            generate_to_ref_cell(),
+            generate_to_rc_weak(),
         ];
         for token in streams {
             tokens.extend(token);

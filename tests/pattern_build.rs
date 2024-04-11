@@ -1,12 +1,12 @@
-#![cfg(feature = "build")]
+#![cfg(all(feature = "build", feature = "json"))]
 use darth_rust::DarthRust;
 use serde::{Deserialize, Serialize};
 
 #[derive(
     DarthRust,
-    Debug,
-    Serialize,
     Deserialize,
+    Serialize,
+    Debug,
     PartialEq,
     Clone,
 )]

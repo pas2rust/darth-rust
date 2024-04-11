@@ -1,7 +1,22 @@
 #![cfg(all(feature = "build", feature = "math"))]
-mod config;
-pub use config::CalcStruct;
 
+use darth_rust::DarthRust;
+#[derive(Debug, DarthRust, Clone)]
+pub struct CalcStruct {
+    pub usize: usize,
+    pub u8: u8,
+    pub u16: u16,
+    pub u32: u32,
+    pub u64: u64,
+    pub u128: u128,
+    pub isize: isize,
+    pub i16: i16,
+    pub i32: i32,
+    pub i64: i64,
+    pub i128: i128,
+    pub f64: f64,
+    pub f32: f32,
+}
 #[test]
 fn test_divide_usize() {
     let mut calc_struct = CalcStruct::new()

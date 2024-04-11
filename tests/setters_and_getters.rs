@@ -2,10 +2,29 @@
     feature = "build",
     feature = "get",
     feature = "get_mut",
-    feature = "set"
+    feature = "set",
+    feature = "json"
 ))]
-mod config;
-pub use config::User;
+
+use darth_rust::DarthRust;
+use serde::{Deserialize, Serialize};
+
+#[derive(
+    DarthRust,
+    Serialize,
+    Deserialize,
+    Debug,
+    PartialEq,
+    Clone,
+)]
+pub struct User {
+    pub id: String,
+    pub name: String,
+    pub password: String,
+    pub email: String,
+    pub age: u8,
+    pub friends: Vec<User>,
+}
 
 #[test]
 pub fn test_setters() {

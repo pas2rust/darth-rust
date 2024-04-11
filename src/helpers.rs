@@ -156,9 +156,11 @@ impl HelpersTrait for Helpers {
                     type_param.bounds.push(parse_quote!(
                         ::std::fmt::Debug
                     ));
+                    #[cfg(feature = "json")]
                     type_param.bounds.push(parse_quote!(
                         ::serde::Serialize
                     ));
+                    #[cfg(feature = "json")]
                     type_param.bounds.push(parse_quote!(
                         for<'de> ::serde::Deserialize<'de>
                     ));

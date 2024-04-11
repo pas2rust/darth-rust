@@ -2,7 +2,7 @@
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 
-pub fn generate_default_method(
+pub fn generate_default(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {
     let data_struct = helpers.get_data_struct().unwrap();

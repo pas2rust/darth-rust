@@ -1,15 +1,15 @@
 mod build;
 mod crates;
 #[cfg(feature = "build")]
-mod generate_build_method;
+mod generate_build;
 #[cfg(feature = "build")]
-mod generate_default_method;
+mod generate_default;
 #[cfg(feature = "json")]
-mod generate_from_json_method;
+mod generate_from_json;
 #[cfg(feature = "get")]
 mod generate_getters;
 #[cfg(feature = "math")]
-mod generate_math_methods;
+mod generate_math;
 #[cfg(feature = "get_mut")]
 mod generate_mut_getters;
 #[cfg(feature = "print")]
@@ -29,12 +29,12 @@ mod generate_printers_warning_by_field;
 #[cfg(feature = "set")]
 mod generate_setters;
 #[cfg(feature = "json")]
-mod generate_to_json_method;
+mod generate_to_json;
 
-mod generate_to_box_method;
-mod generate_to_rc_method;
-mod generate_to_rc_weak_method;
-mod generate_to_ref_cell_method;
+mod generate_to_box;
+mod generate_to_rc;
+mod generate_to_rc_weak;
+mod generate_to_ref_cell;
 mod helpers;
 
 use crates::*;

@@ -2,7 +2,7 @@
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 
-pub fn generate_to_json_method(
+pub fn generate_to_json(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {
     let json_object =

@@ -2,7 +2,7 @@
 use crate::helpers::{Helpers, HelpersTrait};
 use quote::quote;
 use syn::{LitInt, LitStr};
-pub fn generate_build_method(
+pub fn generate_build(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {
     let iter =

@@ -1,19 +1,16 @@
 pub use crate::build::{Build, BuildTrait};
 
 #[cfg(feature = "build")]
-pub use crate::generate_build_method::generate_build_method;
+pub use crate::generate_build::generate_build;
 
 #[cfg(feature = "build")]
-pub use crate::generate_default_method::generate_default_method;
-
-#[cfg(feature = "json")]
-pub use crate::generate_from_json_method::generate_from_json_method;
+pub use crate::generate_default::generate_default;
 
 #[cfg(feature = "get")]
 pub use crate::generate_getters::generate_getters;
 
 #[cfg(feature = "math")]
-pub use crate::generate_math_methods::generate_math_methods;
+pub use crate::generate_math::generate_math;
 
 #[cfg(feature = "get_mut")]
 pub use crate::generate_mut_getters::generate_mut_getters;
@@ -43,15 +40,18 @@ pub use crate::generate_printers_warning_by_field::generate_printers_warning_by_
 pub use crate::generate_setters::generate_setters;
 
 #[cfg(feature = "json")]
-pub use crate::generate_to_json_method::generate_to_json_method;
+pub use crate::generate_from_json::generate_from_json;
 
-pub use crate::generate_to_box_method::generate_to_box_method;
+#[cfg(feature = "json")]
+pub use crate::generate_to_json::generate_to_json;
 
-pub use crate::generate_to_rc_method::generate_to_rc_method;
+pub use crate::generate_to_box::generate_to_box;
 
-pub use crate::generate_to_rc_weak_method::generate_to_rc_weak_method;
+pub use crate::generate_to_rc::generate_to_rc;
 
-pub use crate::generate_to_ref_cell_method::generate_to_ref_cell_method;
+pub use crate::generate_to_rc_weak::generate_to_rc_weak;
+
+pub use crate::generate_to_ref_cell::generate_to_ref_cell;
 
 pub use proc_macro::TokenStream;
 pub use quote::quote;
