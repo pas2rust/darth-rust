@@ -15,6 +15,19 @@ pub fn generate_default(
         });
 
     quote! {
+        /// Creates a new instance of the struct with default values for each field.
+        ///
+        /// This method uses the `Default` trait to initialize each field of the struct. The `Default` trait provides a function `default` that returns the default value of the type.
+        ///
+        /// # Returns
+        ///
+        /// * `Self` - A new instance of the struct with default values for each field.
+        ///
+        /// # Examples
+        ///
+        /// ```rust
+        /// let instance = StructName::default();
+        /// ```
         pub fn default() -> Self {
             Self {
                 #(#field_names)*

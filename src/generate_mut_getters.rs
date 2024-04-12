@@ -9,8 +9,14 @@ pub fn generate_mut_getters(
             let field_name = field.ident.as_ref().unwrap();
             let field_type = &field.ty;
             let method_name = Helpers::new_ident("get_mut", field_name.clone());
-
             quote! {
+                /// Gets a mutable reference to the specified field.
+                ///
+                /// # Examples
+                ///
+                /// ```
+                /// struct.#field_name_get_mut();
+                /// ```
                 pub fn #method_name(&mut self) -> &mut #field_type {
                     &mut self.#field_name
                 }

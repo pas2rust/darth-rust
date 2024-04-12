@@ -24,8 +24,28 @@ pub fn generate_from_json(
             #(#field_deserialization)*
         }
     };
-
     quote! {
+        /// Creates a new instance of the struct from a JSON value.
+        ///
+        /// This method uses the `serde_json` crate to deserialize the JSON value into the struct. Each field in the struct is matched with the corresponding key in the JSON object. If the key is found, the value is deserialized and assigned to the field. If the key is not found or the value cannot be deserialized, the field is assigned its default value.
+        ///
+        /// # Arguments
+        ///
+        /// * `json_value` - A JSON value to deserialize into the struct.
+        ///
+        /// # Returns
+        ///
+        /// * `Result<Self, String>` - A result that is `Ok` if the JSON value could be deserialized into the struct, or `Err` if the JSON value is not an object or does not match the structure of the struct.
+        ///
+        /// # Examples
+        ///
+        /// ```rust
+        /// let json_value = serde_json::json!({
+        ///     "field1": "value1",
+        ///     "field2": "value2"
+        /// });
+        /// let instance = StructName::from_json(json_value).unwrap();
+        /// ```
         pub fn from_json(json_value: serde_json::Value) -> Result<Self, String> {
             if let serde_json::Value::Object(json_object) = json_value {
                 Ok(Self {
