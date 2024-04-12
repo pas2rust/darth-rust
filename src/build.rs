@@ -15,12 +15,8 @@ pub trait BuildTrait {
 impl BuildTrait for Build {
     fn gen(&self) -> TokenStream {
         let mut tokens = TokenStream::new();
-        let helpers = Helpers::new()
-            .input(self.derive_input.clone())
-            .cache_name(Helpers::new_ident_camel_case(
-                "Cache",
-                self.derive_input.ident.clone(),
-            ));
+        let helpers =
+            Helpers::new().input(self.derive_input.clone());
         let streams = vec![
             #[cfg(feature = "json")]
             generate_to_json(helpers.clone()),

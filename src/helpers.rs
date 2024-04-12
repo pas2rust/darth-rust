@@ -9,7 +9,6 @@ use syn::{
 #[derive(Clone)]
 pub struct Helpers {
     pub input: Option<DeriveInput>,
-    pub cache_name: Option<Ident>,
 }
 
 pub trait HelpersTrait {
@@ -20,7 +19,6 @@ pub trait HelpersTrait {
     fn get_fields(&self) -> Result<&Fields, &str>;
     fn new() -> Self;
     fn input(self, new: DeriveInput) -> Self;
-    fn cache_name(self, new: Ident) -> Self;
     fn new_ident(prefix: &str, field_name: Ident) -> Ident;
     fn new_ident_camel_case(
         prefix: &str,
@@ -43,14 +41,10 @@ pub trait HelpersTrait {
 
 impl HelpersTrait for Helpers {
     fn new() -> Self {
-        Self { input: None, cache_name: None }
+        Self { input: None }
     }
     fn input(mut self, new: DeriveInput) -> Self {
         self.input = new.into();
-        self
-    }
-    fn cache_name(mut self, new: Ident) -> Self {
-        self.cache_name = new.into();
         self
     }
     fn get_named_fields(
