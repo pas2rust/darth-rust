@@ -1,9 +1,8 @@
 use proc_macro2::Ident;
 use syn::{
-    parse::Parse, parse_quote, Attribute, Data, DataStruct,
-    DeriveInput, Fields, FieldsNamed, GenericParam,
-    ImplGenerics, Type, TypeGenerics, TypePath,
-    WhereClause,
+    parse::Parse, Attribute, Data, DataStruct, DeriveInput,
+    Fields, FieldsNamed, GenericParam, ImplGenerics, Type,
+    TypeGenerics, TypePath, WhereClause,
 };
 
 #[derive(Clone)]
@@ -141,23 +140,41 @@ impl HelpersTrait for Helpers {
         if let Some(ref mut input) = self.input {
             for param in input.generics.params.iter_mut() {
                 if let GenericParam::Type(
-                    ref mut type_param,
+                    ref mut _type_param,
                 ) = *param
                 {
-                    type_param.bounds.push(parse_quote!(
-                        ::std::default::Default
-                    ));
-                    type_param.bounds.push(parse_quote!(
-                        ::std::fmt::Debug
-                    ));
+                    #[cfg(any(
+                        feature = "print",
+                        feature = "print_by_field"
+                    ))]
+                    _type_param.bounds.push(
+                        syn::parse_quote!(
+                            ::std::default::Default
+                        ),
+                    );
+                    #[cfg(any(
+                        feature = "print",
+                        feature = "print_by_field"
+                    ))]
+                    _type_param.bounds.push(
+                        syn::parse_quote!(
+                            ::std::fmt::Debug
+                        ),
+                    );
                     #[cfg(feature = "json")]
-                    type_param.bounds.push(parse_quote!(
-                        ::serde::Serialize
-                    ));
+                    _type_param.bounds.push(
+                        syn::parse_quote!(
+                            ::serde::Serialize
+                        ),
+                    );
                     #[cfg(feature = "json")]
-                    type_param.bounds.push(parse_quote!(
-                        for<'de> ::serde::Deserialize<'de>
-                    ));
+                    _type_param.bounds.push(
+                        syn::parse_quote!(
+                            for<'de> ::serde::Deserialize<
+                                'de,
+                            >
+                        ),
+                    );
                 }
             }
         }
