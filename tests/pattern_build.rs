@@ -63,12 +63,12 @@ fn json() {
         .friends(friends.clone());
     let user_json_value = user_new.to_json();
     let user_expected_json = json!({
-        "id": *user_new.get_id(),
-        "name": *user_new.get_name(),
-        "password": *user_new.get_password(),
-        "email": *user_new.get_email(),
-        "age": *user_new.get_age(),
-        "friends": *user_new.get_friends(),
+        "id": user_new.id,
+        "name": user_new.name,
+        "password": user_new.password,
+        "email": user_new.email,
+        "age": user_new.age,
+        "friends": user_new.friends,
     });
     let user_from_json =
         User::from_json(user_json_value.clone()).unwrap();

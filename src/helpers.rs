@@ -143,10 +143,7 @@ impl HelpersTrait for Helpers {
                     ref mut _type_param,
                 ) = *param
                 {
-                    #[cfg(any(
-                        feature = "print",
-                        feature = "print_by_field"
-                    ))]
+                    #[cfg(feature = "build")]
                     _type_param.bounds.push(
                         syn::parse_quote!(
                             ::std::default::Default
