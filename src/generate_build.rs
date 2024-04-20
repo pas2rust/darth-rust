@@ -1,7 +1,14 @@
 #![cfg(feature = "build")]
-use crate::helpers::{Helpers, HelpersTrait};
+use crate::{
+    helpers::{Helpers, HelpersTrait},
+    validators::{
+        max_validator::max_validator,
+        min_validator::min_validator,
+        regex_validator::regex_validator,
+    },
+};
 use quote::quote;
-use syn::{LitInt, LitStr};
+
 pub fn generate_build(
     helpers: Helpers,
 ) -> proc_macro2::TokenStream {
@@ -38,69 +45,9 @@ pub fn generate_build(
             }
         }
     });
-
-    let check_pattern = iter.clone().map(|field| {
-        let field_name = field.ident.as_ref().unwrap();
-        let attributes = &field.attrs;
-        let pattern =
-            Helpers::get_attr::<LitStr>(attributes.clone(), "pattern");
-        match pattern {
-            Ok(attr) => quote! {
-                let reg = regex::Regex::new(#attr).unwrap();
-                if !reg.is_match(&self.#field_name.to_string()) {
-                    return Err(
-                        format!("Field {}: {} does not match #[pattern({})]",
-                            stringify!(#field_name),
-                            &self.#field_name,
-                            #attr
-                        )
-                    );
-                }
-            },
-            Err(_) => quote! {},
-        }
-    });
-
-    let check_min = iter.clone().map(|field| {
-        let field_name = field.ident.as_ref().unwrap();
-        let attributes = &field.attrs;
-        let min = Helpers::get_attr::<LitInt>(attributes.clone(), "min");
-        match min {
-            Ok(min) => quote! {
-                if self.#field_name < #min.into() {
-                    return Err(
-                        format!("Field {}: {} does not match #[min({})]",
-                            stringify!(#field_name),
-                            &self.#field_name,
-                            #min
-                        )
-                    );
-                }
-            },
-            Err(_) => quote! {},
-        }
-    });
-
-    let check_max = iter.clone().map(|field| {
-        let field_name = field.ident.as_ref().unwrap();
-        let attributes = &field.attrs;
-        let max = Helpers::get_attr::<LitInt>(attributes.clone(), "max");
-        match max {
-            Ok(max) => quote! {
-                if self.#field_name > #max.into() {
-                    return Err(
-                        format!("Field {}: {} does not match #[max({})]",
-                            stringify!(#field_name),
-                            &self.#field_name,
-                            #max
-                        )
-                    );
-                }
-            },
-            Err(_) => quote! {},
-        }
-    });
-
+    let check_pattern = iter.clone().map(regex_validator);
+    let check_min = iter.clone().map(min_validator);
+    let check_max = iter.clone().map(max_validator);
     let static_methods = quote! {
         /// Creates a new instance of the struct with default values.
         ///

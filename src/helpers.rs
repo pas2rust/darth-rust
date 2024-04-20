@@ -1,8 +1,10 @@
 use proc_macro2::Ident;
+use quote::quote;
 use syn::{
-    parse::Parse, Attribute, Data, DataStruct, DeriveInput,
-    Fields, FieldsNamed, GenericParam, ImplGenerics, Type,
-    TypeGenerics, TypePath, WhereClause,
+    parse::Parse, parse_str, Attribute, Data, DataStruct,
+    DeriveInput, Fields, FieldsNamed, GenericParam,
+    ImplGenerics, ItemStruct, Type, TypeGenerics, TypePath,
+    WhereClause,
 };
 
 #[derive(Clone)]
@@ -14,6 +16,14 @@ pub trait HelpersTrait {
     fn get_named_fields(
         &self,
     ) -> Result<&FieldsNamed, &str>;
+    fn get_item_struct(
+        attributes: Vec<Attribute>,
+        name: &str,
+    ) -> Result<ItemStruct, String>;
+    fn get_struct<T: Parse>(
+        attributes: Vec<Attribute>,
+        name: &str,
+    ) -> Result<T, String>;
     fn get_data_struct(&self) -> Result<&DataStruct, &str>;
     fn get_fields(&self) -> Result<&Fields, &str>;
     fn new() -> Self;
@@ -28,6 +38,10 @@ pub trait HelpersTrait {
         attributes: Vec<Attribute>,
         name: &str,
     ) -> Result<T, String>;
+    fn get_attr_list<T: Parse>(
+        attributes: &mut Vec<Attribute>,
+        name: &str,
+    ) -> Result<T, syn::Error>;
     fn add_traits_to_generics(&mut self);
     fn generics_split_for_impl(
         &self,
@@ -122,6 +136,70 @@ impl HelpersTrait for Helpers {
             field_name.span(),
         )
     }
+    fn get_attr_list<T: Parse>(
+        attributes: &mut Vec<Attribute>,
+        name: &str,
+    ) -> Result<T, syn::Error> {
+        let pos = attributes
+            .iter()
+            .position(|attr| attr.path().is_ident(name));
+        match pos {
+            Some(pos) => {
+                let attr = attributes.remove(pos);
+                attr.parse_args()
+            }
+            None => Err(syn::Error::new_spanned(
+                name,
+                format!("Attribute {} not found", name),
+            )),
+        }
+    }
+    fn get_item_struct(
+        attributes: Vec<Attribute>,
+        name: &str,
+    ) -> Result<ItemStruct, String> {
+        match attributes
+            .iter()
+            .find(|attr| attr.path().is_ident(name))
+        {
+            Some(attr) => {
+                let attr_tokens = quote! { #attr };
+                let attr_string = attr_tokens.to_string();
+                match parse_str::<ItemStruct>(&attr_string) {
+                    Ok(item_struct) => Ok(item_struct),
+                    Err(_) => Err(format!("Could not parse attribute {} as ItemStruct", name)),
+                }
+            }
+            None => {
+                Err(format!("Attribute {} not found", name))
+            }
+        }
+    }
+    fn get_struct<T: Parse>(
+        attributes: Vec<Attribute>,
+        name: &str,
+    ) -> Result<T, String> {
+        match attributes
+            .iter()
+            .find(|attr| attr.path().is_ident(name))
+        {
+            Some(attr) => {
+                let attr_tokens = quote! { #attr };
+                let attr_string = attr_tokens.to_string();
+                match parse_str::<T>(&attr_string) {
+                    Ok(item) => Ok(item),
+                    Err(_) => Err(format!(
+                        "Could not parse attribute {}",
+                        name
+                    )),
+                }
+            }
+            None => {
+                Err(format!("Attribute {} not found", name))
+            }
+        }
+    }
+
     fn get_attr<T: Parse>(
         attributes: Vec<Attribute>,
         name: &str,

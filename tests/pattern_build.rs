@@ -21,9 +21,12 @@ pub struct User {
     #[pattern(
         r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     )]
+    #[pattern_notify("email must be valid")]
     pub email: String,
     #[min(18)]
+    #[min_notify("must be over 18 years old")]
     #[max(30)]
+    #[min_notify("must be at most 30 years old")]
     pub age: u8,
     pub friends: Vec<User>,
 }
@@ -35,7 +38,7 @@ fn user_builder() {
         .name("John Doe")
         .password("password123")
         .email("johndoe@example.com")
-        .age(30)
+        .age(18)
         .friends(vec![])
         .build()
         .unwrap();
@@ -47,7 +50,7 @@ fn user_builder() {
     assert_eq!(user.name, "John Doe");
     assert_eq!(user.password, "password123");
     assert_eq!(user.email, "johndoe@example.com");
-    assert_eq!(user.age, 30);
+    assert_eq!(user.age, 18);
     assert_eq!(user.friends, vec![]);
 }
 

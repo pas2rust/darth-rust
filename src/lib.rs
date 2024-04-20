@@ -30,6 +30,7 @@ mod generate_printers_warning_by_field;
 mod generate_setters;
 #[cfg(feature = "json")]
 mod generate_to_json;
+mod validators;
 
 mod generate_to_box;
 mod generate_to_rc;
@@ -42,7 +43,15 @@ use helpers::{Helpers, HelpersTrait};
 
 #[proc_macro_derive(
     DarthRust,
-    attributes(pattern, min, max)
+    attributes(
+        pattern,
+        pattern_notify,
+        min_notify,
+        max_notify,
+        min,
+        max,
+        attr
+    )
 )]
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
