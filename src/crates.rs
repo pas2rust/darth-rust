@@ -53,6 +53,12 @@ pub use crate::generate_to_rc_weak::generate_to_rc_weak;
 
 pub use crate::generate_to_ref_cell::generate_to_ref_cell;
 
+pub use crate::generate_to_arc::generate_to_arc;
+
+pub use crate::generate_to_mutex::generate_to_mutex;
+
+pub use crate::generate_to_arc_mutex::generate_to_arc_mutex;
+
 pub use proc_macro::TokenStream;
 pub use quote::quote;
 pub use syn::{parse_macro_input, DeriveInput};

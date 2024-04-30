@@ -32,7 +32,10 @@ mod generate_setters;
 mod generate_to_json;
 mod validators;
 
+mod generate_to_arc;
+mod generate_to_arc_mutex;
 mod generate_to_box;
+mod generate_to_mutex;
 mod generate_to_rc;
 mod generate_to_rc_weak;
 mod generate_to_ref_cell;

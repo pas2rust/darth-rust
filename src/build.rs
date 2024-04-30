@@ -60,6 +60,9 @@ impl BuildTrait for Build {
             generate_to_rc(),
             generate_to_ref_cell(),
             generate_to_rc_weak(),
+            generate_to_arc(),
+            generate_to_mutex(),
+            generate_to_arc_mutex(),
         ];
         for token in streams {
             tokens.extend(token);
