@@ -1,63 +1,63 @@
 pub use crate::build::{Build, BuildTrait};
 
 #[cfg(feature = "build")]
-pub use crate::generate_build::generate_build;
+pub use crate::builder::generate_build;
 
 #[cfg(feature = "build")]
-pub use crate::generate_default::generate_default;
+pub use crate::default::generate_default;
 
 #[cfg(feature = "get")]
-pub use crate::generate_getters::generate_getters;
+pub use crate::getters::generate_getters;
 
 #[cfg(feature = "math")]
-pub use crate::generate_math::generate_math;
+pub use crate::math::generate_math;
 
 #[cfg(feature = "get_mut")]
-pub use crate::generate_mut_getters::generate_mut_getters;
+pub use crate::mut_getters::generate_mut_getters;
 
 #[cfg(feature = "print")]
-pub use crate::generate_printers::generate_printers;
+pub use crate::printers::generate_printers;
 
 #[cfg(feature = "print_by_field")]
-pub use crate::generate_printers_by_field::generate_printers_by_field;
+pub use crate::printers_by_field::generate_printers_by_field;
 
 #[cfg(feature = "print_by_field")]
-pub use crate::generate_printers_err_by_field::generate_printers_err_by_field;
+pub use crate::printers_err_by_field::generate_printers_err_by_field;
 
 #[cfg(feature = "print_by_field")]
-pub use crate::generate_printers_info_by_field::generate_printers_info_by_field;
+pub use crate::printers_info_by_field::generate_printers_info_by_field;
 
 #[cfg(feature = "print_by_field")]
-pub use crate::generate_printers_rust_by_field::generate_printers_rust_by_field;
+pub use crate::printers_rust_by_field::generate_printers_rust_by_field;
 
 #[cfg(feature = "print_by_field")]
-pub use crate::generate_printers_success_by_field::generate_printers_success_by_field;
+pub use crate::printers_success_by_field::generate_printers_success_by_field;
 
 #[cfg(feature = "print_by_field")]
-pub use crate::generate_printers_warning_by_field::generate_printers_warning_by_field;
+pub use crate::printers_warning_by_field::generate_printers_warning_by_field;
 
 #[cfg(feature = "set")]
-pub use crate::generate_setters::generate_setters;
+pub use crate::setters::generate_setters;
 
 #[cfg(feature = "json")]
-pub use crate::generate_from_json::generate_from_json;
+pub use crate::from_json::generate_from_json;
 
 #[cfg(feature = "json")]
-pub use crate::generate_to_json::generate_to_json;
+pub use crate::to_json::generate_to_json;
 
-pub use crate::generate_to_box::generate_to_box;
+pub use crate::to_box::generate_to_box;
 
-pub use crate::generate_to_rc::generate_to_rc;
+pub use crate::to_rc::generate_to_rc;
 
-pub use crate::generate_to_rc_weak::generate_to_rc_weak;
+pub use crate::to_rc_weak::generate_to_rc_weak;
 
-pub use crate::generate_to_ref_cell::generate_to_ref_cell;
+pub use crate::to_ref_cell::generate_to_ref_cell;
 
-pub use crate::generate_to_arc::generate_to_arc;
+pub use crate::to_arc::generate_to_arc;
 
-pub use crate::generate_to_mutex::generate_to_mutex;
+pub use crate::to_mutex::generate_to_mutex;
 
-pub use crate::generate_to_arc_mutex::generate_to_arc_mutex;
+pub use crate::to_arc_mutex::generate_to_arc_mutex;
 
 pub use proc_macro::TokenStream;
 pub use quote::quote;

@@ -1,45 +1,44 @@
 mod build;
+mod builder;
 mod crates;
-#[cfg(feature = "build")]
-mod generate_build;
-#[cfg(feature = "build")]
-mod generate_default;
-#[cfg(feature = "json")]
-mod generate_from_json;
-#[cfg(feature = "get")]
-mod generate_getters;
-#[cfg(feature = "math")]
-mod generate_math;
-#[cfg(feature = "get_mut")]
-mod generate_mut_getters;
-#[cfg(feature = "print")]
-mod generate_printers;
-#[cfg(feature = "print_by_field")]
-mod generate_printers_by_field;
-#[cfg(feature = "print_by_field")]
-mod generate_printers_err_by_field;
-#[cfg(feature = "print_by_field")]
-mod generate_printers_info_by_field;
-#[cfg(feature = "print_by_field")]
-mod generate_printers_rust_by_field;
-#[cfg(feature = "print_by_field")]
-mod generate_printers_success_by_field;
-#[cfg(feature = "print_by_field")]
-mod generate_printers_warning_by_field;
-#[cfg(feature = "set")]
-mod generate_setters;
-#[cfg(feature = "json")]
-mod generate_to_json;
-mod validators;
-
-mod generate_to_arc;
-mod generate_to_arc_mutex;
-mod generate_to_box;
-mod generate_to_mutex;
-mod generate_to_rc;
-mod generate_to_rc_weak;
-mod generate_to_ref_cell;
+mod default;
+mod from_aes;
+mod from_bytes;
+mod from_camellia;
+mod from_chacha20;
+mod from_hex;
+mod from_jacc;
+mod from_json;
+mod from_tacc;
+mod getters;
 mod helpers;
+mod math;
+mod mut_getters;
+mod printers;
+mod printers_by_field;
+mod printers_err_by_field;
+mod printers_info_by_field;
+mod printers_rust_by_field;
+mod printers_success_by_field;
+mod printers_warning_by_field;
+mod setters;
+mod to_aes;
+mod to_arc;
+mod to_arc_mutex;
+mod to_box;
+mod to_bytes;
+mod to_camellia;
+mod to_chacha20;
+mod to_hex;
+mod to_jacc;
+mod to_json;
+mod to_jwt;
+mod to_mutex;
+mod to_rc;
+mod to_rc_weak;
+mod to_ref_cell;
+mod to_tacc;
+mod validators;
 
 use crates::*;
 use helpers::{Helpers, HelpersTrait};
@@ -56,6 +55,7 @@ use helpers::{Helpers, HelpersTrait};
         attr
     )
 )]
+
 pub fn darth_rust(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let build = Build::new(input.clone());

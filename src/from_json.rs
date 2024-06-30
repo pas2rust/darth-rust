@@ -11,6 +11,7 @@ pub fn generate_from_json(
         let field_deserialization = helpers.get_fields().unwrap()
         .iter().map(|field| {
             let field_name = &field.ident;
+            let _field_type = &field.ty;
             quote! {
                 #field_name: match json_object.get(stringify!(#field_name)) {
                     Some(value) => serde_json::from_value(value.clone())

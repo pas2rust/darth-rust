@@ -13,7 +13,6 @@ pub fn generate_default(
                 #field_name: Default::default(),
             }
         });
-
     quote! {
         /// Creates a new instance of the struct with default values for each field.
         ///

@@ -3,8 +3,8 @@ use quote::quote;
 use syn::{
     parse::Parse, parse_str, Attribute, Data, DataStruct,
     DeriveInput, Fields, FieldsNamed, GenericParam,
-    ImplGenerics, ItemStruct, Type, TypeGenerics, TypePath,
-    WhereClause,
+    ImplGenerics, ItemStruct, Path, Type, TypeGenerics,
+    TypePath, WhereClause,
 };
 
 #[derive(Clone)]
@@ -13,6 +13,13 @@ pub struct Helpers {
 }
 
 pub trait HelpersTrait {
+    fn get_function_signature(
+        ty: &syn::Type,
+    ) -> Option<(Vec<&syn::Type>, &syn::Type)>;
+    fn get_function_args(
+        syn_path: &Path,
+    ) -> Option<proc_macro2::TokenStream>;
+    fn is_function(syn_type: &Type) -> bool;
     fn get_named_fields(
         &self,
     ) -> Result<&FieldsNamed, &str>;
@@ -91,6 +98,9 @@ impl HelpersTrait for Helpers {
             _ => Err("Data is not a struct"),
         }
     }
+    fn is_function(ty: &Type) -> bool {
+        matches!(ty, &Type::BareFn(_))
+    }
     fn get_type_path(ty: &Type) -> Result<&TypePath, &str> {
         match ty {
             Type::Path(type_path) => Ok(type_path),
@@ -115,10 +125,30 @@ impl HelpersTrait for Helpers {
                     }
                 }
                 Err("No Type::Path found within the Type::Tuple")
-            }
-            _ => Err("The provided type is not a Type::Path, Type::Reference \
-                      containing a Type::Path, or Type::Paren containing a \
-                      Type::Path, or Type::Tuple"),
+            },
+            Type::BareFn(bare_fn) => {
+                let return_type = &bare_fn.output;
+                match return_type {
+                    syn::ReturnType::Type(_, ty) => {
+                        if let Type::Path(type_path) = ty.as_ref() {
+                            Ok(type_path)
+                        } else {
+                            Err("Expected a Type::Path within the return type of the BareFn")
+                        }
+                    },
+                    syn::ReturnType::Default => Err("Expected a return type for the BareFn"),
+                }
+            },
+            Type::ImplTrait(_) => Err("The provided type is an impl trait type"),
+            Type::Verbatim(_) | Type::Macro(_) => Err("The provided type is a closure or macro type"),
+            Type::Array(_) => Err("The provided type is a array"),
+            Type::Group(_) => Err("The provided type is a group"),
+            Type::Infer(_) => Err("The provided type is a infer"),
+            Type::Never(_) => Err("The provided type is a never"),
+            Type::Ptr(_) => Err("The provided type is a ptr"),
+            Type::Slice(_) => Err("The provided type is a slice"),
+            Type::TraitObject(_) => Err("The provided type is a trait object"),
+            _ => todo!("empty type")
         }
     }
     fn new_ident(prefix: &str, field_name: Ident) -> Ident {
@@ -266,5 +296,54 @@ impl HelpersTrait for Helpers {
             .unwrap()
             .generics
             .split_for_impl()
+    }
+    fn get_function_args(
+        syn_path: &syn::Path,
+    ) -> Option<proc_macro2::TokenStream> {
+        if let Some(segment) = syn_path.segments.last() {
+            if let syn::PathArguments::AngleBracketed(
+                args,
+            ) = &segment.arguments
+            {
+                let args_tokens = args
+                    .args
+                    .iter()
+                    .map(|arg| match arg {
+                        syn::GenericArgument::Type(ty) => {
+                            quote! { #ty }
+                        }
+                        _ => quote! {},
+                    })
+                    .collect::<Vec<_>>();
+                return Some(quote! { #(#args_tokens),* });
+            }
+        }
+        None
+    }
+    fn get_function_signature(
+        ty: &syn::Type,
+    ) -> Option<(Vec<&syn::Type>, &syn::Type)> {
+        if let syn::Type::Path(type_path) = ty {
+            if let Some(segment) =
+                type_path.path.segments.last()
+            {
+                if segment.ident == "fn" {
+                    if let syn::PathArguments::AngleBracketed(args) = &segment.arguments {
+                        let mut args_types = Vec::new();
+                        for arg in args.args.iter() {
+                            if let syn::GenericArgument::Type(ty) = arg {
+                                args_types.push(ty);
+                            }
+                        }
+                        if args_types.is_empty() {
+                            return None;
+                        }
+                        let ret_type = args_types.pop().unwrap();
+                        return Some((args_types, ret_type));
+                    }
+                }
+            }
+        }
+        None
     }
 }
